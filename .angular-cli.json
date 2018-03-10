@@ -19,9 +19,16 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+        "styles.css",
+        "../node_modules/font-awesome/css/font-awesome.css"
+
       ],
-      "scripts": [],
+      "scripts": [
+        "./assets/js/jquery.js",
+        "./assets/js/bootstrap.min.js",
+        "./assets/plugins/owl.carousel2/owl.carousel.min.js"
+        
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

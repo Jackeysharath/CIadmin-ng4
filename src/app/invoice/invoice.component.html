@@ -1,0 +1,252 @@
+<div class="content" style="min-height:800px;">
+  <div class="container">
+      <div class="row" style="">
+            <div class="col-md-12">
+                  <h1 class="bigtitle"><br>Your order is confirmed.</h1>
+          <!-- <p>Bill No : 5744112 | MRN : RAJ5471 | Sample Colletion Date : 15-11-2017 | Sample Colletion Time : 07:30:00</p> -->
+
+                   <div *ngIf="order_data.length>0">
+                      <div  *ngFor="let pd of order_data">
+                      Bill No. : {{pd.ordNo}} |
+                      <a target="_blank" href="http://208.163.37.165/IntgCEMS/orderinvoice/{{pd.message}}"><i title="Download the RCS" class="fa fa-arrow-down"></i></a>
+                      </div>
+                    </div>
+            </div> 
+        </div>
+   <!--  <div class="row" *ngFor="let ordInf of orderInfo">
+      <div class="col-md-12">
+        <div  style="padding:20px; background-color:#eee">
+                <p class="sub_heading-brand ft-16px m-b-15">{{ordInf.patient_name}} ({{ordInf.patient_age}} {{(ordInf.patient_gender != "") ? ((ordInf.patient_gender==1 ? "M":"F")) : "N/A"}})</p> 
+
+                <p>Bill No : {{ordInf.order_no}} | MRN : {{ordInf.order_id}} | Sample Colletion Date : {{ordInf.order_date}} </p>
+            
+        </div>
+      </div>
+      <div table="col-md-12">
+        <table class="table">
+          <tr>
+            <th>TEST NAME</th>
+            <th>MRP</th>
+            <th>DISCOUNT</th>
+            <th>AMOUNT</th>
+            <th>Instructions</th>
+          </tr>
+          <tr>
+            <td>{{ordInf.test_name}}</td>
+            <td>{{ordInf.order_amount}}</td>
+            <td>0</td>
+            <td>{{ordInf.order_amount}}</td>
+            <td>
+         
+        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" (click)="getTestInstructions(ordInf)"><i class="fa fa-info-circle"></i></button>
+            </td>
+          </tr>
+         </table>
+
+      </div>
+    </div> -->
+
+    <div class="row" *ngIf="orderInfo[0]?.length>0">
+      <div class="col-md-12">
+        <div  style="padding:20px; background-color:#eee">
+                <p class="sub_heading-brand ft-16px m-b-15">{{orderInfo[0][0].patient_name}} ({{orderInfo[0][0].patient_age}} {{(orderInfo[0][0].patient_gender != "") ? ((orderInfo[0][0].patient_gender==1 ? "M":"F")) : "N/A"}})</p> 
+
+                <p>Bill No : {{orderInfo[0][0].order_no}} | MRN : {{orderInfo[0][0].order_id}} | Sample Colletion Date : {{orderInfo[0][0].order_date}} </p>
+            
+        </div>
+      </div>
+      <div table="col-md-12">
+        <table class="table">
+          <tr>
+            <th>TEST NAME</th>
+            <th>MRP</th>
+            <th>DISCOUNT</th>
+            <th>AMOUNT</th>
+            <th>Instructions</th>
+          </tr>
+          <tr *ngFor="let of1 of orderInfo[0]">
+            <td>{{of1.test_name}}</td>
+            <td>{{of1.test_amount}}</td>
+            <td>0</td>
+            <td>{{of1.test_amount}}</td>
+            <td>
+          
+        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" (click)="getTestInstructions(of1.tid)"><i class="fa fa-info-circle"></i></button>
+            </td>
+          </tr>
+         </table>
+
+      </div>
+    </div> 
+
+    <div class="row" *ngIf="orderInfo[1]?.length>0">
+      <div class="col-md-12">
+        <div  style="padding:20px; background-color:#eee">
+                <p class="sub_heading-brand ft-16px m-b-15">{{orderInfo[1][0].patient_name}} ({{orderInfo[1][0].patient_age}} {{(orderInfo[1][0].patient_gender != "") ? ((orderInfo[1][0].patient_gender==1 ? "M":"F")) : "N/A"}})</p> 
+
+                <p>Bill No : {{orderInfo[1][0].order_no}} | MRN : {{orderInfo[1][0].order_id}} | Sample Colletion Date : {{orderInfo[1][0].order_date}} </p>
+            
+        </div>
+      </div>
+      <div table="col-md-12">
+        <table class="table">
+          <tr>
+            <th>TEST NAME</th>
+            <th>MRP</th>
+            <th>DISCOUNT</th>
+            <th>AMOUNT</th>
+            <th>Instructions</th>
+          </tr>
+          <tr *ngFor="let of2 of orderInfo[1]">
+            <td>{{of2.test_name}}</td>
+            <td>{{of2.test_amount}}</td>
+            <td>0</td>
+            <td>{{of2.test_amount}}</td>
+            <td>
+          
+        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" (click)="getTestInstructions(of2.tid)"><i class="fa fa-info-circle"></i></button>
+            </td>
+          </tr>
+         </table>
+
+      </div>
+    </div>
+
+    <div class="row" *ngIf="orderInfo1.length >0">
+      <div class="col-md-12"> 
+        <div  style="padding:20px; background-color:#eee">
+                <p class="sub_heading-brand ft-16px m-b-15">{{orderInfo1[0].patient_name}} ({{orderInfo1[0].patient_age}} {{(orderInfo1[0].patient_gender != "") ? ((orderInfo1[0].patient_gender==1 ? "M":"F")) : "N/A"}})</p> 
+
+                <p>Bill No : {{orderInfo1[0].order_no}} | MRN : {{orderInfo1[0].order_id}} | Sample Colletion Date : {{orderInfo1[0].order_date}} </p>
+            
+        </div>
+      </div>
+      <div table="col-md-12" >
+        <table class="table">
+          <tr>
+            <th>TEST NAME</th>
+            <th>MRP</th>
+            <th>DISCOUNT</th>
+            <th>AMOUNT</th>
+            <th>Instructions</th>
+          </tr>
+          <tr *ngFor="let ordInf1 of orderInfo1">
+            <td>{{ordInf1.test_name}}</td>
+            <td>{{ordInf1.test_amount}}</td>
+            <td>0</td>
+            <td>{{ordInf1.test_amount}}</td>
+            <td>
+          <!-- Button trigger modal -->
+            <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" (click)="getTestInstructions(ordInf1.tid)"><i class="fa fa-info-circle"></i></button>
+            </td>
+          </tr>
+         </table>
+
+          </div>
+        </div>
+    
+    <!--  <div *ngIf="false" class="modal-dialog" id="" role="document">
+            <div class="modal-content" *ngIf = "testInstrs?.length>0;">
+              <div class="modal-header">
+                <h5 class="sub_heading-brand ft-16px m-b-15 modal-title">{{testInstrs[0].test_name}}-Instructions</h5>
+              </div>
+              <div class="modal-body">
+                <ul class="list-ul-default" >
+                    <li>{{testInstrs[0].test_instructions}}</li>                        
+                </ul>
+              </div>
+              <div class="modal-footer">
+               
+                <button  class="btn btn-secondary" data-dismiss="modal" (click)="testInst()">Close</button>
+              </div> 
+            </div>
+      </div> -->
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="vertical-alignment-helper">
+        <div class="modal-dialog vertical-align-center">
+            <div class="modal-content" *ngIf = "testInstrs?.length>0;"> 
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+
+                    </button>
+                     <h4 class="modal-title" id="myModalLabel">{{testInstrs[0].test_name}}-Instructions</h4>
+
+                </div>
+                <div class="modal-body">{{testInstrs[0].test_instructions}}</div>
+                 <div class="modal-footer">
+                  <!--  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                 <!-   <button type="button" class="btn btn-primary">Save changes</button> -->
+                </div> 
+            </div>
+        </div>
+    </div>
+</div>
+ <!--    <div class="row">
+      <div table="col-md-12">
+        <table class="table">
+          <tr>
+            <th>TEST NAME</th>
+            <th>MRP</th>
+            <th>DISCOUNT</th>
+            <th>AMOUNT</th>
+            <th>Instructions</th>
+          </tr>
+          <tr>
+            <td>CBC</td>
+            <td>500</td>
+            <td>50</td>
+            <td>250</td>
+            <td><i class="fa fa-info-circle"></i></td>
+          </tr>
+          <tr>
+            <td>Lipid Profile </td>
+            <td>1000</td>
+            <td>25</td>
+            <td>750</td>
+            <td><i class="fa fa-info-circle"></i></td>
+          </tr>
+         </table>
+      </div>
+           </div> -->
+    <!-- <div class="row">
+    <div class="col-md-12">
+      <div style="padding:20px; background-color:#eee">
+               <p class="sub_heading-brand ft-16px m-b-15">Vijaya lakshmi(45 F), Please follow the Test Instruction Below:</p>
+                            <ul class="list-ul-default">
+                                            <li>Please do fasting for 8 hours before the test scheduled date .</li>
+                                            <li>No Special preparation required .</li>
+                      <li>Draw blood between 8-9 a.m.</li>
+                </ul>
+             </div>
+      <div class="row">
+        <div table="col-md-12">
+          <table class="table">
+            <tr>
+              <th>TEST NAME</th>
+              <th>MRP</th>
+              <th>DISCOUNT</th>
+              <th>AMOUNT</th>
+            </tr>
+            <tr>
+              <td>QUADRUPLE MARKER (METRO GA 14 -22.6 wks)</td>
+              <td>2800</td>
+              <td>10.71</td>
+              <td>2500</td>
+            </tr>
+            <tr>
+              <td>CBC</td>
+              <td>500</td>
+              <td>50</td>
+              <td>250</td>
+            </tr>
+           </table>
+        </div>
+
+      
+      </div>
+    </div>-->
+  
+     
+    </div> 
+</div>

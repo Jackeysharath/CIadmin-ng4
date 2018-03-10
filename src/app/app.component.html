@@ -1,20 +1,234 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{title}}!
-  </h1>
-  <img width="300" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<!-- <div class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="container">
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <a href="../" class="navbar-brand">TENET</a>
+        <ul class="nav navbar-nav">
+          <li  class="nav-item">
+            <a routerLink="home">Home</a>
+          </li>
+          <li  class="nav-item">
+            <a routerLink="home" >Find A Lab</a>
+          </li>
+          <li  class="nav-item">
+            <a routerLink="contactus" >Contact Us</a>
+          </li>
+         </ul>
+       <ul class="nav navbar-nav ml-auto">
+           <li><a href="#" >Built With Bootstrap</a></li> 
+          <li  class="nav-item" [ngClass]="{lg:isLoggedIn==true}"><a href="javascript:void(0)" (click)="toLogin()">Account Login</a></li>
+          <li  class="nav-item" [ngClass]="{lg:isLoggedIn==false}"><a href="javascript:void(0)" (click)="toLogout()">Logout</a></li>
+          <li  class="nav-item" [ngClass]="{lg:isLoggedIn==false}"><a href="javascript:void(0)" (click)="profile()">Profile</a></li>
+        </ul>
 
+      </div>
+    </div>
+  </div> -->
+<header> 
+  <nav class="navbar navbar-default header_nav">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">
+          <img src="./assets/images/tenet-logo.png" width="180"/>
+        
+        </a>
+      </div>
+  
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          
+          <li class="nav-item"><a routerLink="home">HOME</a></li>
+          <li class=""><a routerLink="network">OUR NETWORK</a></li>
+          <li class=""><a routerLink="our-facilities">OUR FACILITIES</a></li>
+          <li class=""><a routerLink="packages">OUR PACKAGES</a></li>
+          <!-- <li class=""><a routerLink="home">FIND A LAB</a></li> -->
+          <li class=""><a routerLink="contactus">CONTACT US</a></li>
+        
+        </ul>
+        <!-- right side header start here -->
+        <ul class="nav navbar-nav navbar-right">
+          <li  class="nav-item" [ngClass]="{lg:isLoggedIn==true}"><a href="javascript:void(0)" (click)="toLogin()"><i class="fa fa-user-circle"></i> LOGIN</a></li>
+          <li>
+        <!-- <a href="#"><i class="far fa-user-circle"></i> LOGIN</a> -->
+        
+        <a href="#" class="dropdown-toggle " [ngClass]="{lg:isLoggedIn==false}" type="button" data-toggle="dropdown"><i class="fa fa-user-circle"></i> {{user.user_name}}</a>
+        <ul class="dropdown-menu sub_menu">
+          <li><a routerLink="order-history">My Appointment</a></li>
+          <li><a (click)="profile()">My Profile</a></li>
+          <li><a (click)="toLogout()">Logout</a></li>
+          <!-- <li><a href="#"></a></li> -->
+        </ul> 
+      </li>
+          <li><a href="#"><i class="fa fa-phone"></i> CALL</a></li>
+          <li>
+            <a href="#" class="dropdown-toggle" [ngClass]="{lg:isLoggedIn==false}" type="button" data-toggle="dropdown"><i class="fa fa-google-wallet"></i> Wallet</a>
+              <ul class="dropdown-menu sub_menu">
+                
+                <li><a routerLink="wallet">My Wallet</a></li>
+               
+              </ul>
+         </li>
+          <li >
+        <a  href="#" class="dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-cart-plus"></i> <span *ngIf="(cartCnt > 0)">({{cartCnt}})</span> CART</a>
+
+        <div class="dropdown-menu" style="min-height:100px; min-width:300px; padding:15px;">
+          <h5 class="text-brandcolor" style="margin:0; margin-bottom:15px; font-weight:600">My Cart <span *ngIf="(cartCnt > 0)">({{cartCnt}})</span></h5>
+          <table *ngIf="(tests?.length > 0)||(pckgs?.length > 0)" width="100%">
+            <tr  *ngFor="let item of tests">
+              <td>{{item.test_name}}</td>
+              <td class="text-center" width="20px">:</td>
+              <td>RS.{{item.test_finalpr}}</td>
+              <td>Qty.{{item.quant}}</td>
+              <td><a href="javascript:void(0)" (click)="deleteCartItem(user.user_id,item.tid)"><i class="fa fa-trash-o text-brandcolor" aria-hidden="true"></i></a></td>
+            </tr>
+            <tr *ngFor="let pckg of pckgs">
+              <td>{{pckg.package_name}}</td>
+              <td class="text-center" width="20px">:</td>
+              <td>RS.{{pckg.package_finalpr}}</td>
+              <td><a href="javascript:void(0)" (click)="deleteCartItem(user.user_id,pckg.id)"><i class="fa fa-trash-o text-brandcolor" aria-hidden="true"></i></a></td>
+            </tr>
+            <tr><td>Testing Charges </td> <td class="text-center" width="20px">:</td><td>RS.{{tot}}</td></tr>
+            <tr><td>Home Visit Charges </td> <td class="text-center" width="20px">:</td><td>RS.{{hvc}}</td></tr>
+            <tr><td>Collection Charges </td> <td class="text-center" width="20px">:</td><td>RS.{{colc}}</td></tr>
+            <tr>
+              <td><strong>Total Payable</strong></td>
+              <td class="text-center" width="20px">:</td>
+              <td colspan="2" class="text-brandcolor"><strong>RS.{{tot+hvc+colc}}</strong></td>
+            </tr>
+          </table>
+          <div class="form-group text-right" style="padding:15px 0;">
+            <button class="btn btn-black btn-sm" (click)="clearCart()">CLEAR CART</button>
+            <button class="btn btn-brand btn-sm" (click)="checkOut()">CHECKOUT</button>
+          </div>
+        </div>
+      </li>
+          
+        </ul>
+        <div style="text-align: right;
+  margin-top: 40px;
+  font-size: 17px;
+  margin-right: -7px;font-weight: 600;"><i class="fa fa-map-marker"></i> <span style="color:#f05b25">Hyderabad</span></div>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+      
+    </header>
+  <div class="container">
+      <router-outlet></router-outlet>
+      <!-- Old model cart need to remove at production mode -->
+      <div id="cart" *ngIf="false">
+        <div class="col-lg-12">
+          <div class="bs-component">
+            <div *ngIf="(tests?.length > 0)||(pckgs?.length > 0)">
+              <table>
+                <tr *ngFor="let item of tests"><td>{{item.test_name}} :</td><td>RS.{{item.test_finalpr}}</td><td></td><td><a href="javascript:void(0)" (click)="deleteCartItem(user.user_id,item.tid)"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td></tr>
+               <tr *ngFor="let pckg of pckgs"><td>{{pckg.package_name}} :</td><td>RS.{{pckg.package_finalpr}}</td><td></td><td><a href="javascript:void(0)" (click)="deleteCartItem(user.user_id,pckg.id)"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td></tr>
+
+                <tr><td>Testing Charges :</td><td>RS.{{tot}}</td></tr>
+                <tr><td>Home Visit Charges :</td><td>RS.{{hvc}}</td></tr>
+                <tr><td>Collection Charges :</td><td>RS.{{colc}}</td></tr>
+                <tr><th><strong>Total Payable :</strong></th><th><strong>RS.{{tot+hvc+colc}}</strong></th></tr>
+             
+              </table>
+              <!-- <div *ngFor="let item of tests"><strong>{{item.test_name}} :</strong><span class="pull-right" style="right:0px;">RS.{{item.test_finalpr}}</span></div> -->
+            
+            <!-- <h6>Testing Charges :<span class="pull-right">RS.{{tot}}</span></h6>
+            <h6>Home Visit Charges :<span class="pull-right">RS.{{hvc}}</span></h6>
+            <h6>Collection Charges :<span class="pull-right">RS.{{colc}}</span></h6>
+            <h4>Total Payable :<span class="pull-right"><strong>RS.{{tot+hvc+colc}}</strong></span></h4> -->
+          </div>
+            <form>
+              <div class="form-group"><div class="pull-right" style="right:0"><button class="btn btn-warning btn-xs" (click)="clearCart()">Clear Cart</button>&nbsp;&nbsp;<button class="btn btn-primary btn-xs" (click)="checkOut()">Checkout</button></div>
+              </div>
+              <a href="javascript:void(0)" (click)="hideCart()">Min.Cart</a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+   <!-- <p><strong>{{idleState}}</strong></p> -->
+     <!-- <p *ngIf="lastPing"><small>Last keepalive ping <strong title="{{lastPing | date: 'medium'}}">{{lastPing | amTimeAgo}}</strong></small></p> -->
+    <!-- <button md-raised-button color="primary" (click)="reset()" *ngIf="timedOut">Restart</button> -->
+
+    <!-- <div class="footer">
+      <div  class="footer-left"><a href="javascipt:void(0)">Privacy Statement and Terms of Use</a><br>
+      © 2017 Center for Excellence Medical Sciences® Holdings. All Rights Reserved.
+      </div>
+      <div class="pull-right"><a href="javascript:void(0)">Notice of Nondiscrimination</a></div>
+    </div> -->
+    <footer>
+      <!-- <div class="container ">
+          <div class="row">
+              <div class="col-md-7">
+                  <h4 class="brand_title"><strong>A unit of Tenet Med Corp</strong></h4>
+                    <ul class="footer_nav_links_ul">
+                      <li><a>ABOUT US</a></li>
+                        <li><a>ABOUT US</a></li>
+                        <li><a>ABOUT US</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-5 text-right">
+                  <ul class="social_link_ul">
+                        <li><a href="#"><img src="./assets/images/iconimages/facebookicon.png"></a></li>
+                        <li><a href="#"><img src="./assets/images/iconimages/twittericon.png"></a></li>
+                        <li><a href="#"><img src="./assets/images/iconimages/instagramicon.png"></a></li>
+                        
+                      </ul>
+                </div>
+            </div>
+            <hr style="margin: 0; border-top:1px solid #f05b25">
+            <div class="row">
+                <div class="col-md-12">
+                    <p>© 2017 Tenet Diagnostics. All rights reserved.</p>
+                </div>
+             </div>
+        </div> -->
+        <div class="container">
+          <div class="row">
+              <div class="col-md-7">
+                  <h4 class="brand_title"><strong>A unit of Tenet Med Corp</strong></h4>
+                    <ul class="footer_nav_links_ul">
+                      <li><a>ABOUT US</a></li>
+                        <li><a>ABOUT US</a></li>
+                        <li><a>ABOUT US</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-5 text-right">
+                  <ul class="social_link_ul">
+                        <li><a href="#"><img src="./assets/images/iconimages/facebookicon.png"></a></li>
+                        <li><a href="#"><img src="./assets/images/iconimages/twittericon.png"></a></li>
+                        <li><a href="#"><img src="./assets/images/iconimages/instagramicon.png"></a></li>
+                        
+                      </ul>
+                </div>
+            </div>
+            <hr style="margin: 0; border-top:1px solid #f05b25">
+            <div class="row">
+                <div class="col-md-12">
+                    <p>© 2017 Tenet Diagnostics. All rights reserved.</p>
+                </div>
+             </div>
+        </div>
+    </footer>
+
+
+            
+        
+
+            
+
+
+
+
+  

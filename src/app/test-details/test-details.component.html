@@ -1,0 +1,114 @@
+<div class="content" style="min-height:800px;">
+    <div class="container">
+      <div class="row" style="">
+           <div class="col-md-12">
+                  <h1 class="bigtitle">OUR TESTS</h1>
+            </div>
+        </div>
+        <div class="row" style="">
+          <div class="col-md-12 text-center">
+              <div class="form-group" style="margin: 30px 100px;">
+                  <div class="input-group search_input-group">
+                      <input #searchString type="text" class="form-control input-lg" placeholder="Search for your nearest tenet center, test or service." aria-describedby="basic-addon2" value="">
+                      <span class="input-group-addon" id="basic-addon2" style="background-color:#fff; border:0px;" (click)="searchBasedOnString(searchString.value)"> 
+                          <span><i class="far fa-circle" style="color:#f05b25; font-size: 30px;margin-top: -7px;"></i></span>
+                            <div style="font-size: 14px;margin-top: -22px; color:#f05b25"><i class="fas fa-search"></i></div>
+                              
+                      </span>
+                    </div>
+
+                </div>
+            </div>  
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+              <p class="text-brandcolor">We found 1 matching test</p>
+            </div>
+            <div class="col-md-12">
+              <div class="panel-group test_panel">
+                 <div class="panel panel-default">
+                  <div class="panel-heading">
+                  <a class="pull-right text-brandcolor" data-toggle="collapse" href="#collapse1">Click here for more details</a>
+                    <h3 style="margin:0">{{testDetails.test_name}}</h3>
+                    <div class="rating" style="margin-top:10px;margin-bottom:10px">
+                      <i class="fa fa-star fil"></i>
+                        <i class="fa fa-star fil"></i>
+                        <i class="fa fa-star fil"></i>
+                        <i class="fa fa-star fil"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    
+                    <div class="qty_inpt_div pull-left">
+                      <input class="text-center input-sm form-control theme" value="1"/>
+                    </div> 
+                    <div class="pull-left">
+                      <h5 style="margin:5px; font-size:14px" (click)="getAddTestCart1(testDetails)"><img src="./assets/images/iconimages/carticon.png" width="20px" /> ADD TO CART</h5>
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+
+                  <div id="collapse1" class="panel-collapse collapse in">
+                      <!--panel body-->
+                      <div class="panel-body">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <ul class="nav nav-tabs test_details_nav_tabs">
+                                 <!--  <li class="active"><a data-toggle="tab" href="#details">DETAILS</a></li>
+                                  <li><a data-toggle="tab" href="#mmm">MARKERS MEASURED</a></li>
+                                  <li><a data-toggle="tab" href="#pot">POTENTIAL SYMPTOMS</a></li> -->
+                                  <li class="active"><a data-toggle="tab" href="#details">CLINICAL INFORMATION</a></li>
+                                  <li><a data-toggle="tab" href="#mmm">TEST INFORMATION</a></li>
+                                   <li><a data-toggle="tab" href="#pot">POTENTIAL SYMPTOMS</a></li>
+                            </ul>
+                            <div class="tab-content">
+                              <div id="details" class="tab-pane fade in active">
+                                    <h4>Test also known as :</h4>
+                                    <ul><li><p>{{testDetails.test_other_names}}</p></li></ul>
+                                    <h4>Speciality :</h4>
+                                    <ul><li><p>{{testDetails.test_spec}}.</p></li></ul>
+                                    <h4>Specimen Type :</h4>
+                                    <ul><li><p>{{testDetails.spec_type| json}}.</p></li></ul>
+                                    <h4>Specimen Instruction :</h4>
+                                    <ul><li><p>{{testDetails.spec_inst}}.</p></li></ul>
+                                    <h4>Pre Test Information :</h4>
+                                    <ul><li  [innerHtml]="testDetails.test_ptn"></li></ul>
+                                    <h4>Test Code :</h4>
+                                    <ul><li><p>{{testDetails.test_code}}.</p></li></ul>
+                              </div><!--active -->
+                               <div id="mmm" class="tab-pane fade">
+                                    <h4>Test Schedule :</h4>
+                                    <ul><li><p>{{testDetails.test_sch}}.</p></li></ul>  
+                                    <h4>Availability :</h4>
+                                    <ul><li><p>{{testDetails.report_avb}}.</p></li></ul>
+                                    <h4>Why to get test :</h4>
+                                    <ul><li><p>{{testDetails.test_whygt}}.</p></li></ul>
+                                    <h4>When to get test :</h4>
+                                    <ul><li><p>{{testDetails.test_whengt}}.</p></li></ul>
+                                    <h4>Related tests :</h4>
+                                    <ul><li><p>{{testDetails.test_rel}}.</p></li></ul>
+                                    <h4>Referral Links :</h4>
+                                    <ul><li><p>{{testDetails.test_name}}.</p></li></ul>
+                               </div>
+                              <div id="pot" class="tab-pane fade">
+                                    <h3>Menu 3</h3>
+                                    <p>Some content in menu 3.</p>
+                              </div>
+                           <!--  </div> --><!--tab -->
+
+                  
+                             </div>
+                          </div>
+                        </div>
+                      </div>
+                 
+                      <!--Panel body-->
+                  </div>
+
+                 </div>
+              </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

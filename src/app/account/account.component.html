@@ -1,0 +1,849 @@
+<div class="content" style="min-height:800px;">
+    <div class="container">
+      <div class="row" style="">
+            <div class="col-md-12">
+      
+                <ul class="nav nav-tabs brand_nav_tabs">
+                  <li class="active"><a data-toggle="tab" href="#profile">PROFILE</a></li>
+                  <!-- <li><a data-toggle="tab" href="#locations">LOCATIONS</a></li> -->
+                  <li><a data-toggle="tab" href="#changepassword">CHANGE PASSWORD</a></li>
+                </ul>
+        
+                <div class="tab-content">
+                  <div id="profile" class="tab-pane in active">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <!-- <div class="col-md-3">BASIC INFORMATION</div><div class="col-md-3"><i aria-hidden="true" class="fa fa-pencil" (click)="editInfo()"></i></div> -->
+
+                        <table width="100%" class="profile_table" style="margin-top:100px;" *ngIf="basicInfo">
+
+                               <tr>
+                                  <td width="15%">Name</td>
+                                    <td width="7%" align="center" class="text-center">:</td>
+                                    <td><input class="theme form-control" value='{{(user.user_name != "") ? user.user_name : "N/A"}}' readonly="readonly"/></td>
+                                </tr>
+                <tr>
+                                  <td width="15%">Gender</td>
+                                    <td width="7%" align="center" class="text-center">:</td>
+                                    <td><input class="theme form-control" value='{{(user.gender != "") ? ((user.gender==1 ? "Male":"Female")) : "N/A"}}' readonly="readonly"/></td>
+                                </tr>
+                <tr>
+                                  <td width="15%">Mobile</td>
+                                    <td width="7%" align="center" class="text-center">:</td>
+                                    <td><input class="theme form-control" value='{{(user.user_phone != "")? user.user_phone : "N/A"}}' readonly="readonly"/></td>
+                                </tr>
+                <tr>
+                                  <td width="15%">Email</td>
+                                    <td width="7%" align="center" class="text-center">:</td>
+                                    <td><input class="theme form-control" value='{{(user.user_email != "") ? user.user_email : "N/A"}}' readonly="readonly"/></td>
+                                </tr>
+                              <tr>
+                                  <td width="15%">DOB</td>
+                                    <td width="7%" align="center" class="text-center">:</td>
+                                    <td><input class="theme form-control" value="{{user.user_dob | date:'dd-MM-yyyy'}}" readonly="readonly" /></td>
+                                </tr>
+                
+                   </table>
+
+                        <form  #uProfile="ngForm" novalidate (ngSubmit)="updateProfile(uProfile)" *ngIf="editFlag">
+                          <input type="hidden" class="form-control" name="user_id" [(ngModel)] ="user.uid" [value]="user.uid">
+
+                          <table width="100%" class="profile_table" style="margin-top:100px;">
+                              <tr><td colspan="3"><strong  class="form-text text-success" *ngIf="upm">Profile updated successfully!</strong></td></tr>
+                              <tr>
+                                  <td width="15%">Name</td>
+                                    <td width="7%" align="center" class="text-center">:</td>
+                                    <td>
+                                      <div class="form-group">
+                                        <input class="theme form-control" type="text" required name="user_name" [(ngModel)]="user.user_name" [value]="user.user_name" #user_name="ngModel" pattern="[a-zA-Z][a-zA-Z ]+"/>
+                                         <div style="color:#fc6107" 
+                                      *ngIf="user_name?.errors && (user_name.dirty || user_name.touched || uProfile.submitted)">
+                                                  <p *ngIf="user_name?.errors.required">
+                                                      The User name is required
+                                                  </p>
+                                                 
+                                                  <p *ngIf="user_name?.errors.pattern">
+                                                       The User name should only consist of alphabets
+                                                  </p> 
+                                        </div>
+                                     </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                  <td width="15%">Gender</td>
+                                    <td width="7%" align="center" class="text-center">:</td>
+                                      <td>
+                                        <div class="form-group">
+                                      <input  type="radio" required name="user_gender" [(ngModel)]="user.gender" [value]="1" [checked]="user.gender ==1"/>Male<input  type="radio" required name="user_gender" [(ngModel)]="user.gender" [value]="2" [checked]="user.gender ==2"/>Female
+                                    </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                  <td width="15%">Mobile</td>
+                                    <td width="7%" align="center" class="text-center">:</td>
+                                    <td>
+                                      <div class="form-group">
+                                      <input class="theme form-control" type="text" required name="user_mobile" [(ngModel)]="user.user_phone" #user_mobile="ngModel" pattern="[0-9]*" minlength="10" maxlength="10">
+                                      <div style="color:#fc6107" 
+                                    *ngIf="user_mobile?.errors && (user_mobile.dirty || user_mobile.touched || uProfile.submitted)">
+                                          <p *ngIf="user_mobile?.errors.required">
+                                              The Mobile number is required
+                                          </p>
+                                         
+                                          <p *ngIf="user_mobile?.errors.pattern">
+                                               The Mobile number should only consist of numbers
+                                          </p> 
+                                      </div>
+                                     </div>
+                                    </td>
+                                </tr>
+                              <tr>
+                                  <td width="15%">Email</td>
+                                    <td width="7%" align="center" class="text-center">:</td>
+                                    <td>
+                                      <div class="form-group">
+                                      <input class="theme form-control" type="email" required name="user_email" [(ngModel)]="user.user_email" #user_email="ngModel" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"/>
+                                        <div style="color:#fc6107" 
+                                *ngIf="user_email?.errors && (user_email.dirty || user_email.touched || uProfile.submitted || user_email.pattern)">
+                                          <p *ngIf="user_email?.errors.required">
+                                              The Email is required
+                                          </p>
+                                          
+                                          <p *ngIf="user_email?.errors.pattern">
+                                              Invalid email
+                                          </p>
+                                     </div>
+
+                                      </div>
+                                    </td>
+                                </tr>
+                               <tr>
+                                  <td width="15%">DOB</td>
+                                    <td width="7%" align="center" class="text-center">:</td>
+                                    <td>
+                                      <div class="form-group">
+                                      <input class="theme form-control" type="date" required name="user_dob" [ngModel] ="user.user_dob | date:'yyyy-MM-dd'" (ngModelChange)="user.user_dob = $event" #user_dob="ngModel"/>
+                                            <div style="color:#fc6107" 
+                                      *ngIf="user_dob?.errors && (user_dob.dirty || user_dob.touched || uProfile.submitted)">
+                                              <p *ngIf="user_dob.errors.required">
+                                                  The Date of birth is required
+                                              </p>
+
+                                           </div>
+                                    </div>
+                                    </td>
+                                </tr>
+
+                               <!-- <tr>
+                                  <td width="15%">ADDRESS</td>
+                                    <td width="7%" align="center" class="text-center">:</td>
+                                    <td><input class="theme form-control" value="Lorem ipsum solor sit amet, consectetuer"/></td>
+                                </tr> -->
+                        <!--   <tr>
+                            <td></td>
+                            <td><button class="btn btn-brand" type="submit">Save</button></td>
+                            <td><button class="btn btn-default" type="reset">
+                            Cancel</button></td>
+                          </tr> -->
+                          <tr>
+                            
+                          </tr><tr></tr>
+                          <tr>
+                            <td colspan="3" >
+                                 <div class="form-group text-center" style="margin:20px;">
+                               <!--  <button _ngcontent-c1="" class="btn btn-brand" type="submit" (click)="editInfo()">Edit</button> -->
+                                <button class="btn btn-brand" type="submit">Save Changes</button>
+                              </div>
+                            </td>
+                          </tr> 
+                            </table>
+                        </form>
+
+                        <div  *ngIf="editBtn" class="form-group text-center" style="margin:20px;">
+                          <button _ngcontent-c1="" class="btn btn-brand" type="submit" (click)="editInfo()">Edit</button>
+                          <!-- <button class="btn btn-default" type="reset">Cancel</button> -->
+                        </div>
+                          
+                        </div>
+                        <div class="col-md-6">
+                         <!--  <div class="col-md-3">FAMILY MEMBERS</div><div class="col-md-3"><i aria-hidden="true" class="fa fa-pencil"></i></div> -->
+                         <div *ngIf="ms1">
+                          <table width="100%" class="profile_table" style="margin-top:100px;">
+                                <tr>
+                                  <td colspan="3"><h3 class="text-brandcolor" style="margin-top:2px;">FAMILY MEMBERS</h3></td>
+                                  <td><button class="btn btn-brand" type="submit" style="float: right;" (click)="addFM()">ADD</button></td>
+                                </tr>
+                                <tr *ngFor="let mem of members">
+                                  <td><input class="theme form-control" value="{{mem.user_name}}"/></td>
+                                    <td width="80px"><input class="theme form-control" placeholder="Age" value="{{mem.age}} Years"/></td>
+                                    <td width="120px"><input class="theme form-control" placeholder="Gender" value='{{(mem.gender != "") ? ((mem.gender==1 ? "Male":"Female")) : "N/A"}}'/></td>
+                                    <td><a class="theme form-control" href="javascript:void(0)" (click)=editFMInfo(mem.uid)><i class="fa fa-pencil" aria-hidden="true" style="float: right;"></i></a></td>
+                                </tr>
+                                <tr *ngIf="members.length == 0"><td rowspan="3">No Family member Available</td></tr>
+                <!-- <tr>
+                                  <td><input class="theme form-control" placeholder="Family Member 2"/></td>
+                                    <td width="80px"><input class="theme form-control" placeholder="Age"/></td>
+                                    <td width="120px"><input class="theme form-control" placeholder="Gender"/></td>
+                                </tr>
+                <tr>
+                                  <td><input class="theme form-control" placeholder="Family Member 3"/></td>
+                                    <td width="80px"><input class="theme form-control" placeholder="Age"/></td>
+                                    <td width="120px"><input class="theme form-control" placeholder="Gender"/></td>
+                                </tr>
+                <tr>
+                                  <td><input class="theme form-control" placeholder="Family Member 4"/></td>
+                                    <td width="80px"><input class="theme form-control" placeholder="Age"/></td>
+                                    <td width="120px"><input class="theme form-control" placeholder="Gender"/></td>
+                                </tr> --> 
+
+                               <!--  <tr>
+                                  <div class="form-group text-center" style="margin:20px;">
+                                  <button class="btn btn-brand" type="submit">Edit</button>
+                                  <button class="btn btn-default" type="submit">Save</button>
+                                  </div>
+                                </tr> -->
+
+                                                        
+                            </table>
+                          </div>
+                            <!-- <div *ngIf="ms2">
+                                <form  #form="ngForm" novalidate (ngSubmit)="saveFamilyMembers(form.value,user.user_id)">
+                          
+                          <table width="100%" class="profile_table" style="margin-top:100px;">
+                              <tr>
+                                  <td width="15%">Name</td>
+                                    <td width="7%" align="center" class="text-center">:</td>
+                                    <td><input class="theme form-control" type="text" name="user_name" placeholder="Name of family member" ngModel #user_name="ngModel"/></td>
+                                </tr>
+                                <tr>
+                                  <td width="15%">Gender</td>
+                                    <td width="7%" align="center" class="text-center">:</td>
+                                      <td>
+                                      <div class="theme form-control"> 
+                                      <input  type="radio" name="user_gender" value="1" ngModel #user_gender="ngModel"/>Male<input  type="radio" name="user_gender" value="2" ngModel #user_gender="ngModel"/>Female
+                                    </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                  <td width="15%">Mobile</td>
+                                    <td width="7%" align="center" class="text-center">:</td>
+                                    <td><input class="theme form-control"  name="user_mobile" placeholder="Mobile Ex.9640352007" ngModel #user_mobile="ngModel"/></td>
+                                </tr>
+                              <tr>
+                                  <td width="15%">Email</td>
+                                    <td width="7%" align="center" class="text-center">:</td>
+                                    <td><input class="theme form-control" type="email" name="user_email" placeholder="Email Ex.sharath@rushr.in" ngModel #user_email="ngModel"/></td>
+                                </tr>
+                               <tr>
+                                  <td width="15%">DOB</td>
+                                    <td width="7%" align="center" class="text-center">:</td>
+                                    <td><input class="theme form-control" type="date" name="user_dob" placeholder="Ex.05-12-1990" ngModel #user_dob="ngModel"/></td>
+                                </tr>
+
+                                 <strong  class="form-text text-success" *ngIf="false">Family member added successfully</strong>
+                                 <tr>
+                                   <div  class="form-group text-center" style="margin:20px;">
+                    <button _ngcontent-c1="" class="btn btn-brand" type="submit" >Edit</button> -->
+                                <!--     <button class="btn btn-brand" type="submit">Save</button>
+                      </div>
+                                 </tr>
+                               
+                            </table>
+                          </form>
+                
+                            </div> -->
+
+          <div *ngIf="ms2" class="modal-dialog" role="document">
+            <div class="modal-content">
+              <form  #af="ngForm" novalidate (ngSubmit)="saveFamilyMembers(af.value,user.uid)">
+              <div class="modal-header">
+                <h5 class="modal-title">Add Family Member</h5>
+                <!-- <input type="text" name="" value="{{user.uid}}"> -->
+                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button> -->
+              </div>
+              <div class="modal-body">
+                <div class="form-group"><label class="control-label">Name :</label><input class="theme form-control" type="text" required name="user_name" placeholder="Name of family member" ngModel #user_name="ngModel" pattern="[a-zA-Z][a-zA-Z ]+"/>
+
+                  <div style="color:#fc6107" 
+                                *ngIf="user_name?.errors && (user_name.dirty || user_name.touched || af.submitted ||  user_name.pattern)">
+                                  <p *ngIf="user_name?.errors.required">
+                                      The Username is required
+                                  </p>
+                                 
+                                  <p *ngIf="user_name1?.errors.pattern">
+                                       The Username should only consist of alphabets
+                                  </p> 
+
+                   </div>
+                </div>
+
+                <div class="form-group"><label class="control-label">Gender :</label><input  type="radio" required name="user_gender" value="1" ngModel #user_gender="ngModel"/>Male<input  type="radio" required name="user_gender" value="2" ngModel #user_gender="ngModel"/>Female
+                  <div style="color:#fc6107" 
+                                *ngIf="user_gender?.errors && (user_gender.touched || af.submitted)">
+                                  <p *ngIf="user_gender?.errors.required">
+                                      The Gender is required
+                                  </p>    
+
+                   </div>
+
+                </div>
+
+                <div class="form-group"><label class="control-label">Mobile :</label><input class="theme form-control" type="text" required name="user_mobile" placeholder="Mobile Ex.9640352007" ngModel #user_mobile="ngModel" pattern="[0-9]*" minlength="10" maxlength="10"/>
+                  <div style="color:#fc6107" *ngIf="user_mobile?.errors && (user_mobile.dirty || user_mobile.touched || af.submitted || user_mobile.minlength || user_mobile.pattern)">
+                                  <p *ngIf="user_mobile?.errors.required">
+                                      The Mobile Number is required
+                                  </p>
+                                   <p *ngIf="user_mobile?.errors.minlength">
+                                        Mobile number should be 10 digit
+                                  </p>
+                                  <p *ngIf="user_mobile?.errors.minlength">
+                                       Mobile number should be only numbers
+                                  </p>
+
+                                </div>
+                </div>
+
+                <div class="form-group"><label class="control-label">Email :</label><input class="theme form-control" type="email" required name="user_email" placeholder="Email Ex.sharath@rushr.in" ngModel #user_email="ngModel" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"/>
+                  <div style="color:#fc6107" 
+                                *ngIf="user_email?.errors && (user_email.dirty || user_email.touched || af.submitted || user_email.pattern)">
+                                  <p *ngIf="user_email?.errors.required">
+                                      The Email is required
+                                  </p>
+                                  
+                                  <p *ngIf="user_email?.errors.pattern">
+                                      Invalid email
+                                  </p>
+                   </div>
+                
+                </div>
+
+                <div class="form-group"><label class="control-label">DOB :</label><input class="theme form-control" type="date" required name="user_dob" placeholder="Ex.05-12-1990" ngModel #user_dob="ngModel"/>
+                  <div style="color:#fc6107" 
+                                *ngIf="user_dob?.errors && (user_dob.dirty || user_dob.touched || af.submitted || user_dob.pattern)">
+                                  <p *ngIf="user_dob.errors.required">
+                                      The Date of birth is required
+                                  </p>
+
+                  </div>
+                </div>
+
+                <strong  class="form-text text-success" *ngIf="fam">Family member added successfully</strong>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-brand">Save changes</button>
+                <button  class="btn btn-secondary" data-dismiss="modal" (click)="hm2()">Close</button>
+              </div>
+            </form>
+            </div>
+          </div>
+
+
+          <div *ngIf="ms7" class="modal-dialog" role="document">
+             <form  #updatefm="ngForm" novalidate (ngSubmit)="updateFamilyMembers(updatefm.value,member.uid)">
+            <div class="modal-content">
+             
+              <div class="modal-header">
+                <h5 class="modal-title">Edit Family Members</h5>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <label class="control-label">Name :</label>
+                  <input class="theme form-control" type="text" required  name="user_name" [(ngModel)]="member.user_name" #user_name="ngModel" pattern="[a-zA-Z][a-zA-Z ]+" />
+                  <div style="color:#fc6107" 
+                                *ngIf="user_name?.errors && (user_name.dirty || user_name.touched || updatefm.submitted ||  user_name.pattern)">
+                                  <p *ngIf="user_name?.errors.required">
+                                      The User name is required
+                                  </p>
+                                 
+                                  <p *ngIf="user_name?.errors.pattern">
+                                       The User name should only consist of alphabets
+                                  </p> 
+
+                   </div>
+
+                </div>
+
+                <div class="form-group"><label class="control-label">Gender :</label><input  type="radio" required name="user_gender" [(ngModel)]="member.gender" [value]="1" [checked]="member.gender ==1" #user_gender="ngModel"/>Male<input  type="radio" required name="user_gender" [(ngModel)]="member.gender" [value]="2" [checked]="member.gender ==2" #user_gender="ngModel"/>Female
+    
+                    <div style="color:#fc6107" 
+                                *ngIf="user_gender?.errors && (user_gender.touched || updatefm.submitted)">
+                                  <p *ngIf="user_gender?.errors.required">
+                                      The Gender is required
+                                  </p>    
+
+                   </div>
+                </div>
+
+                <div class="form-group"><label class="control-label">Mobile :</label><input class="theme form-control" type="text" required name="user_mobile" [(ngModel)]="member.user_phone" #user_mobile="ngModel" pattern="[0-9]*" minlength="10" maxlength="10"/>
+                  <div style="color:#fc6107" 
+                                *ngIf="user_mobile?.errors && (user_mobile.dirty || user_mobile.touched || updatefm.submitted)">
+                                  <p *ngIf="user_mobile?.errors.required">
+                                      The Mobile number is required
+                                  </p>
+                                 
+                                  <p *ngIf="user_mobile?.errors.pattern">
+                                       The Mobile number should only consist of numbers
+                                  </p> 
+                   </div>
+
+                </div>
+
+                <div class="form-group"><label class="control-label">Email :</label><input class="theme form-control" type="email" required name="user_email" [(ngModel)]="member.user_email" #user_email="ngModel" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"/>
+                  <div style="color:#fc6107" 
+                                *ngIf="user_email?.errors && (user_email.dirty || user_email.touched || updatefm.submitted || user_email.pattern)">
+                                  <p *ngIf="user_email?.errors.required">
+                                      The Email is required
+                                  </p>
+                                  
+                                  <p *ngIf="user_email?.errors.pattern">
+                                      Invalid email
+                                  </p>
+                   </div>
+
+                </div>
+
+                <div class="form-group"><label class="control-label">DOB :</label><input class="theme form-control" [ngModel] ="member.user_dob | date:'yyyy-MM-dd'" (ngModelChange)="member.user_dob = $event"  type="date" required name="user_dob" #user_dob="ngModel"/>
+                  <div style="color:#fc6107" 
+                                *ngIf="user_dob?.errors && (user_dob.dirty || user_dob.touched || updatefm.submitted)">
+                                  <p *ngIf="user_dob.errors.required">
+                                      The Date of birth is required
+                                  </p>
+
+                  </div>
+                </div>
+                <strong  class="form-text text-success" *ngIf="fmem">Family member updated successfully!</strong>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-brand">Save changes</button>
+                <button type="submit" class="btn btn-secondary" data-dismiss="modal" (click)="hm6()">Close</button>
+              </div>
+          
+            </div>
+              </form>
+          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div *ngIf="ms3">
+                            <table width="100%" class="profile_table" style="margin-top:100px;" *ngIf="locations.length > 0">    
+                                  <tr>
+                                  <td ><h3 class="text-brandcolor" style="margin-top:2px;">USER LOCATIONS</h3></td>
+                                  <td><button class="btn btn-brand" type="submit" style="float: right;" (click)="addLoc()">ADD</button></td>
+                                  </tr>
+                                  <tr *ngFor="let loc of locations">
+  
+                                    <td class="theme form-control">
+                                      <div [ngSwitch]="loc.title_id">
+                                    <ng-template [ngSwitchCase]="1">
+                                    <div>Default Address</div>
+                                    </ng-template>
+                                    <ng-template [ngSwitchCase]="2">
+                                    <div>Home Address</div>
+                                    </ng-template>
+                                    <ng-template [ngSwitchCase]="3">
+                                    <div>Office Address</div>
+                                      </ng-template>
+                                      <ng-template [ngSwitchCase]="4">
+                                    <div>Other Address</div>
+                                      </ng-template>
+                                  </div>
+                                    </td>
+                                    <td><input class="theme form-control" value="{{loc.address}},{{loc.area}},{{loc.city}}"/></td>
+                                      <td><a class="theme form-control" href="javascript:void(0)" (click)=editFMAddress(loc.id,loc.area_id)><i class="fa fa-pencil" aria-hidden="true" style="float: right;"></i></a></td>
+                                  </tr>                             
+                              </table>
+                              <table *ngIf="locations.length == 0" width="100%" class="profile_table" style="margin-top:100px;">
+                                <tr>
+                                  <td ><h3 class="text-brandcolor" style="margin-top:2px;">USER LOCATIONS</h3></td>
+                                  <td><button class="btn btn-brand" type="submit" style="float: right;" (click)="addLoc()">ADD</button></td>
+                                  </tr>
+                                <tr><td><p class="sub_heading-brand ft-16px m-b-15">No locations Available here</p></td></tr> 
+                              </table>
+                            </div>
+  
+                            <div *ngIf="ms4" class="modal-dialog" role="document">
+                              <form #uaf="ngForm" novalidate (ngSubmit)="addUserAddress(uaf.value,user.uid)">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title">Add User Location</h5>
+                                        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button> -->
+                                      </div>
+                                      <div class="modal-body">
+                                        <div class="form-group"><label class="control-label">Title :</label><select class="form-control" required name="title_id" ngModel #title_id="ngModel"><option value="1">Default</option><option value="2">Home</option><option value="3">Office</option><option value="4">Other</option></select>
+                                            <div style="color:#fc6107" 
+                                    *ngIf="title_id?.errors && (title_id.dirty || title_id.touched || uaf.submitted)">
+                                              <p *ngIf="title_id?.errors.required">
+                                                  The Title selection is required
+                                              </p>
+                                          </div>
+                                        </div>
+                                        <div class="form-group"><label class="control-label">Address :</label><textarea class="form-control" required name="address" ngModel #address="ngModel" placeholder="flat#T-5,vijaya nilayam,road no.36,Jubliee Hills"></textarea>
+                                            <div style="color:#fc6107" 
+                                    *ngIf="address?.errors && (address.dirty || address.touched || uaf.submitted)">
+                                              <p *ngIf="address?.errors.required">
+                                                  The Address is required
+                                              </p>
+                                          </div>
+                                        </div>
+                                       
+                                        <div class="form-group" ><label class="control-label">City :</label><select class="form-control" required name="city_id" ngModel #city_id="ngModel" (change)="getAreaByCity($event)"><option value="">Select City</option><option *ngFor="let city of cities" value="{{city.city_id}}">{{city.city_desc}}</option></select>
+                                            <div style="color:#fc6107" 
+                                    *ngIf="city_id?.errors && (city_id.dirty || city_id.touched || uaf.submitted)">
+                                              <p *ngIf="city_id?.errors.required">
+                                                  The City selection is required
+                                              </p>
+                                          </div>
+                                        </div>
+  
+                                        <div class="form-group"><label class="control-label">Area :</label><select class="form-control" required name="area_id" ngModel #area_id="ngModel"><option value="">Select Area</option><option *ngFor="let area of areas" value="{{area.area_id}}">{{area.area_name}}</option></select>
+  
+                                           <div style="color:#fc6107" 
+                                  *ngIf="area_id?.errors && (area_id.dirty || area_id.touched || uaf.submitted)">
+                                            <p *ngIf="area_id?.errors.required">
+                                                The Area selection is required
+                                            </p>
+                                         </div>
+                                        </div>
+  
+                                         <strong  class="form-text text-success" *ngIf="ms5">User new address added successfuly.</strong>
+                                      </div>
+  
+                                      <div class="modal-footer">
+                                        <button type="submit" class="btn btn-brand">Save changes</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="hm4()">Close</button>
+                                      </div>
+  
+                                    </div>
+                                    </form>
+                                  </div>
+  
+          <div *ngIf="ms6" class="modal-dialog" role="document">
+            <form #updateAddressForm="ngForm" novalidate (ngSubmit)="updateUserAddress(updateAddressForm.value,user.uid)">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">Edit User Location</h5>
+                      </div>
+                      <div class="modal-body">
+                         <input type="hidden" class="form-control" name="user_loc_id"  [(ngModel)] ="location.user_loc_id" [value]="location.user_loc_id">
+  
+                        <div class="form-group"><label class="control-label">Title :</label>
+                          <select class="form-control" required name="title" [(ngModel)]="location.title_id" #title="ngModel">
+                            <option value="0" [selected]="location.title_id ==0">Default</option>
+                            <option value="1" [selected]="location.title_id ==1">Home</option>
+                            <option value="2" [selected]="location.title_id ==2">Office</option>
+                            <option value="3" [selected]="location.title_id ==3">Other</option>
+                          </select>
+  
+                          <div style="color:#fc6107" 
+                          *ngIf="title_id?.errors && (title_id.dirty || title_id.touched || updateAddressForm.submitted)">
+                                    <p *ngIf="title_id?.errors.required">
+                                        The Title is required
+                                    </p>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group"><label class="control-label">Address :</label><textarea class="form-control" required name="address" [(ngModel)]="location.address" #address="ngModel">{{location.address}}</textarea>
+                          <div style="color:#fc6107" 
+                                  *ngIf="address?.errors && (address.dirty || address.touched || updateAddressForm.submitted)">
+                                            <p *ngIf="address?.errors.required">
+                                                The Address is required
+                                            </p>
+                          </div>
+  
+                        </div>
+                   
+                        <div class="form-group" ><label class="control-label">City :</label><select class="form-control" required name="city_id" [(ngModel)]="location.city_id" (change)="getAreaByCity($event)" #city_id="ngModel"><option value="">Select City</option><option *ngFor="let city of cities" value="{{city.city_id}}">{{city.city_desc}}</option></select>
+                          <div style="color:#fc6107" 
+                                  *ngIf="city_id?.errors && (city_id.dirty || city_id.touched || updateAddressForm.submitted)">
+                                            <p *ngIf="city_id?.errors.required">
+                                                The City selection is required
+                                            </p>
+                          </div>
+  
+                        </div>
+  
+                        <div class="form-group"><label class="control-label">Area :</label><select class="form-control" required name="area_id" [(ngModel)]="location.area_id" #area_id="ngModel"><option value="">Select Area</option><option *ngFor="let area of areas" value="{{area.area_id}}">{{area.area_name}}</option></select>
+  
+                           <div style="color:#fc6107" 
+                                  *ngIf="area_id?.errors && (area_id.dirty || area_id.touched || updateAddressForm.submitted)">
+                                            <p *ngIf="area_id?.errors.required">
+                                                The Area name selection is required
+                                            </p>
+                           </div>
+                        </div>
+                        <div class="form-group" *ngIf="uam">
+                      <!--  <label class="control-label">Msg :</label> -->
+                          <strong  class="form-text text-success" >Address Updated successfuly.</strong>
+                        </div>
+  
+                       
+                      </div>
+                      <div class="modal-footer">
+                        <button type="submit" class="btn btn-brand">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="hm5()">Close</button>
+                      </div>
+                    </div>
+                    </form>
+                  </div>
+                  <!--EDIT, UPDATE-->
+  
+  
+                          </div>
+                        <!-- <div class="col-md-12">
+              <div class="form-group text-center" style="margin:20px;">
+                <button class="btn btn-brand" type="submit" (click)="editInfo()">Edit</button>
+                <button class="btn btn-default" type="submit">Save</button>
+              </div>
+            </div> -->
+            
+                    </div>
+                  
+                  </div>
+                  <div id="changepassword" class="tab-pane">
+                      <div class="row" style="margin-top:100px">
+                        <div class="col-md-4">
+                          </div>
+                          <p *ngIf="pwc==1" class="sub_heading-brand ft-10px m-b-15">Password Changed Successfully</p>
+                          <p *ngIf="pwc==2" class="sub_heading-brand ft-10px m-b-15">Invalid User/Current Password</p>
+                          <p *ngIf="pwc==4" class="sub_heading-brand ft-10px m-b-15">Invalid old password</p>
+                          <p *ngIf="pwc==3" class="sub_heading-brand ft-10px m-b-15">Old and new passwords must be different</p>
+                          <form #cp="ngForm" novalidate (ngSubmit)="changePassword(cp,cp.valid)">
+                              <input type="hidden" name="user_id" [(ngModel)]="user.uid" value="{{user.uid}}">
+                              <div class="col-md-4">
+                                  <div class="form-group">
+                                      <input ngModel name="oldpassword" #oldpassword="ngModel" id="oldpassword" class="form-control theme" type="password"  placeholder="Old Password" required/>
+
+                                        <div style="color:#fc6107" 
+                                        *ngIf="oldpassword?.errors && (oldpassword.dirty || oldpassword.touched || cp.submitted)">
+                                          <p *ngIf="oldpassword?.errors.required">
+                                              The Old password is required
+                                          </p>
+                                        </div>
+
+                                  </div>
+                                  <div class="form-group">
+                                      <input class="form-control theme" type="password" placeholder="New Password" required name="newpassword" ngModel #newpassword="ngModel" minlength="6"/>
+
+                                       <div style="color:#fc6107" 
+                                *ngIf="newpassword?.errors && (newpassword.dirty || newpassword.touched || newpassword.minlength || cp.submitted)">
+                                          <p *ngIf="newpassword?.errors.required">
+                                              The New password is required
+                                          </p>
+                                          <p *ngIf="newpassword?.errors.minlength">
+                                           The Password must be at least 5 characters long.
+                                          </p>
+                                </div>
+
+                                  </div>
+                                  <div class="form-group">
+                                      <input class="form-control theme" type="password" class="form-control theme" placeholder="Confirm Password"  validateEqual="newpassword" required name="cpassword" ngModel #cpassword="ngModel" />
+
+                                  <div style="color:#fc6107" 
+                                  *ngIf="cpassword?.errors && (cpassword.dirty || cpassword.touched || cp.submitted)">
+                                    <p *ngIf="cpassword?.errors.required">
+                                        The Confirm password is required
+                                    </p>
+                                  </div>
+
+                                  </div>
+                                  <div [hidden]="cpassword.valid || cpassword.pristine" style="color:red">
+                                      Passwords did not match
+                                  </div>
+
+                                  <div class="form-group text-right">
+                                      <button class="btn btn-default" type="submit">Save</button>
+                                      <button class="btn btn-brand" type="submit" type="reset" [disabled]="cp.pristine">Cancel</button>
+                                  </div>
+                              </div>
+                          </form>           
+                      </div>
+                  </div>
+
+                  <div id="locations" class="tab-pane">
+                      <div class="row">
+                        <div class="col-md-2">
+                        </div>
+                        <div class="col-md-6">
+                        <div *ngIf="ms3">
+                          <table width="100%" class="profile_table" style="margin-top:100px;" *ngIf="locations.length > 0">    
+                                <tr>
+                                <td ><h3 class="text-brandcolor" style="margin-top:2px;">USER LOCATIONS</h3></td>
+                                <td><button class="btn btn-brand" type="submit" style="float: right;" (click)="addLoc()">ADD</button></td>
+                                </tr>
+                                <tr *ngFor="let loc of locations">
+
+                                  <td class="theme form-control">
+                                    <div [ngSwitch]="loc.title_id">
+                                  <ng-template [ngSwitchCase]="1">
+                                  <div>Default Address</div>
+                                  </ng-template>
+                                  <ng-template [ngSwitchCase]="2">
+                                  <div>Home Address</div>
+                                  </ng-template>
+                                  <ng-template [ngSwitchCase]="3">
+                                  <div>Office Address</div>
+                                    </ng-template>
+                                    <ng-template [ngSwitchCase]="4">
+                                  <div>Other Address</div>
+                                    </ng-template>
+                                </div>
+                                  </td>
+                                  <td><input class="theme form-control" value="{{loc.address}},{{loc.area}},{{loc.city}}"/></td>
+                                    <td><a class="theme form-control" href="javascript:void(0)" (click)=editFMAddress(loc.id,loc.area_id)><i class="fa fa-pencil" aria-hidden="true" style="float: right;"></i></a></td>
+                                </tr>                             
+                            </table>
+                            <table *ngIf="locations.length == 0" width="100%" class="profile_table" style="margin-top:100px;">
+                              <tr>
+                                <td ><h3 class="text-brandcolor" style="margin-top:2px;">USER LOCATIONS</h3></td>
+                                <td><button class="btn btn-brand" type="submit" style="float: right;" (click)="addLoc()">ADD</button></td>
+                                </tr>
+                              <tr><td><p class="sub_heading-brand ft-16px m-b-15">No locations Available here</p></td></tr> 
+                            </table>
+                          </div>
+
+                          <div *ngIf="ms4" class="modal-dialog" role="document">
+                            <form #uaf="ngForm" novalidate (ngSubmit)="addUserAddress(uaf.value,user.uid)">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title">Add User Location</h5>
+                                      <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button> -->
+                                    </div>
+                                    <div class="modal-body">
+                                      <div class="form-group"><label class="control-label">Title :</label><select class="form-control" required name="title_id" ngModel #title_id="ngModel"><option value="1">Default</option><option value="2">Home</option><option value="3">Office</option><option value="4">Other</option></select>
+                                          <div style="color:#fc6107" 
+                                  *ngIf="title_id?.errors && (title_id.dirty || title_id.touched || uaf.submitted)">
+                                            <p *ngIf="title_id?.errors.required">
+                                                The Title selection is required
+                                            </p>
+                                        </div>
+                                      </div>
+                                      <div class="form-group"><label class="control-label">Address :</label><textarea class="form-control" required name="address" ngModel #address="ngModel" placeholder="flat#T-5,vijaya nilayam,road no.36,Jubliee Hills"></textarea>
+                                          <div style="color:#fc6107" 
+                                  *ngIf="address?.errors && (address.dirty || address.touched || uaf.submitted)">
+                                            <p *ngIf="address?.errors.required">
+                                                The Address is required
+                                            </p>
+                                        </div>
+                                      </div>
+                                     
+                                      <div class="form-group" ><label class="control-label">City :</label><select class="form-control" required name="city_id" ngModel #city_id="ngModel" (change)="getAreaByCity($event)"><option value="">Select City</option><option *ngFor="let city of cities" value="{{city.city_id}}">{{city.city_desc}}</option></select>
+                                          <div style="color:#fc6107" 
+                                  *ngIf="city_id?.errors && (city_id.dirty || city_id.touched || uaf.submitted)">
+                                            <p *ngIf="city_id?.errors.required">
+                                                The City selection is required
+                                            </p>
+                                        </div>
+                                      </div>
+
+                                      <div class="form-group"><label class="control-label">Area :</label><select class="form-control" required name="area_id" ngModel #area_id="ngModel"><option value="">Select Area</option><option *ngFor="let area of areas" value="{{area.area_id}}">{{area.area_name}}</option></select>
+
+                                         <div style="color:#fc6107" 
+                                *ngIf="area_id?.errors && (area_id.dirty || area_id.touched || uaf.submitted)">
+                                          <p *ngIf="area_id?.errors.required">
+                                              The Area selection is required
+                                          </p>
+                                       </div>
+                                      </div>
+
+                                       <strong  class="form-text text-success" *ngIf="ms5">User new address added successfuly.</strong>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                      <button type="submit" class="btn btn-brand">Save changes</button>
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="hm4()">Close</button>
+                                    </div>
+
+                                  </div>
+                                  </form>
+                                </div>
+
+        <div *ngIf="ms6" class="modal-dialog" role="document">
+          <form #updateAddressForm="ngForm" novalidate (ngSubmit)="updateUserAddress(updateAddressForm.value,user.uid)">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Edit User Location</h5>
+                    </div>
+                    <div class="modal-body">
+                       <input type="hidden" class="form-control" name="user_loc_id"  [(ngModel)] ="location.user_loc_id" [value]="location.user_loc_id">
+
+                      <div class="form-group"><label class="control-label">Title :</label>
+                        <select class="form-control" required name="title" [(ngModel)]="location.title_id" #title="ngModel">
+                          <option value="0" [selected]="location.title_id ==0">Default</option>
+                          <option value="1" [selected]="location.title_id ==1">Home</option>
+                          <option value="2" [selected]="location.title_id ==2">Office</option>
+                          <option value="3" [selected]="location.title_id ==3">Other</option>
+                        </select>
+
+                        <div style="color:#fc6107" 
+                        *ngIf="title_id?.errors && (title_id.dirty || title_id.touched || updateAddressForm.submitted)">
+                                  <p *ngIf="title_id?.errors.required">
+                                      The Title is required
+                                  </p>
+                          </div>
+                      </div>
+                      
+                      <div class="form-group"><label class="control-label">Address :</label><textarea class="form-control" required name="address" [(ngModel)]="location.address" #address="ngModel">{{location.address}}</textarea>
+                        <div style="color:#fc6107" 
+                                *ngIf="address?.errors && (address.dirty || address.touched || updateAddressForm.submitted)">
+                                          <p *ngIf="address?.errors.required">
+                                              The Address is required
+                                          </p>
+                        </div>
+
+                      </div>
+                 
+                      <div class="form-group" ><label class="control-label">City :</label><select class="form-control" required name="city_id" [(ngModel)]="location.city_id" (change)="getAreaByCity($event)" #city_id="ngModel"><option value="">Select City</option><option *ngFor="let city of cities" value="{{city.city_id}}">{{city.city_desc}}</option></select>
+                        <div style="color:#fc6107" 
+                                *ngIf="city_id?.errors && (city_id.dirty || city_id.touched || updateAddressForm.submitted)">
+                                          <p *ngIf="city_id?.errors.required">
+                                              The City selection is required
+                                          </p>
+                        </div>
+
+                      </div>
+
+                      <div class="form-group"><label class="control-label">Area :</label><select class="form-control" required name="area_id" [(ngModel)]="location.area_id" #area_id="ngModel"><option value="">Select Area</option><option *ngFor="let area of areas" value="{{area.area_id}}">{{area.area_name}}</option></select>
+
+                         <div style="color:#fc6107" 
+                                *ngIf="area_id?.errors && (area_id.dirty || area_id.touched || updateAddressForm.submitted)">
+                                          <p *ngIf="area_id?.errors.required">
+                                              The Area name selection is required
+                                          </p>
+                         </div>
+                      </div>
+                      <div class="form-group" *ngIf="uam">
+                    <!--  <label class="control-label">Msg :</label> -->
+                        <strong  class="form-text text-success" >Address Updated successfuly.</strong>
+                      </div>
+
+                     
+                    </div>
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-brand">Save changes</button>
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="hm5()">Close</button>
+                    </div>
+                  </div>
+                  </form>
+                </div>
+                <!--EDIT, UPDATE-->
+
+
+                        </div>
+
+                      </div>
+                  </div>
+
+          
+                </div>
+        
+            </div>
+           
+        </div>
+  
+     </div>
+</div>

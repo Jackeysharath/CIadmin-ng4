@@ -1,0 +1,12 @@
+.package_row{
+	border-bottom:1px solid #afafaf;
+	margin:0;
+}
+.package_row .col-md-4{
+	border-right:1px solid #afafaf;
+	margin-top:15px;
+	margin-bottom:15px;
+}
+.package_row .col-md-4:last-child{
+	border:0;
+}

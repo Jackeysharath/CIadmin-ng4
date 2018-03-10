@@ -1,0 +1,355 @@
+<div class="content" style="min-height:800px;">
+    <div class="container">
+    <!--Search content -->
+    <div class="row" style="margin-top:30px; margin-bottom:35px;">
+          <div class="col-md-12 text-center">
+              <div class="form-group" style="margin: 40px 100px;">
+                  <div class="input-group search_input-group">
+                      <input #searchString type="text" class="form-control input-lg" placeholder="Search for your nearest tenet center, test or service." aria-describedby="basic-addon2">
+                      <span class="input-group-addon" id="basic-addon2" style="background-color:#fff; border:0px;" (click)="searchBasedOnString(searchString.value)"> 
+                          <span><i class="far fa-circle" style="color:#f05b25; font-size: 30px;margin-top: -7px;"></i></span>
+                            <div style="font-size: 14px;margin-top: -22px; color:#f05b25"><i class="fas fa-search"></i></div>
+                              
+                      </span>
+                    </div>
+
+                </div>
+            </div>  
+        </div>
+    <!--Search content -->
+        <hr>
+        	<div class="row" style="padding:20px 0;">
+        	<div class="col-md-12">
+            	<ul class="nav nav-tabs brand_nav_tabs">
+                  <li class="active"><a data-toggle="tab" href="#home">TENET HUB</a></li>
+                  <li><a data-toggle="tab" href="#menu1">TENET WELLNESS</a></li>
+                  <li><a data-toggle="tab" href="#menu2">TENET EXPRESS</a></li>
+                  <li><a data-toggle="tab" href="#menu2">TENET REACH</a></li>
+                </ul>
+                
+                <div class="tab-content">
+                  <div id="home" class="tab-pane in active">
+                   	<div class="row" style="padding:20px 0px;">
+                    	<div class="col-md-12">
+                        	<h1 class="bigtitle">TENET HUB <small class="subtitle">RADIOLOGY, PATHOLOGY & IMAGING</small></h1>
+                        </div>
+                        <div class="col-md-6">
+                            <h2 class="titles"><img src="./assets/images/iconimages/teneticon.png" class="pull-left" height="35" style="margin:0px 10px 10px 0px; " />FOR A 360<sup>o</sup>  <br>DIAGNOSIS</h2>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="text-justify">Tenet Hub brings together state-of-the-art equipment, premiere medical softwares and expert health professionals for accurate and reliable results across our all-inclusive range of diagnostic services like Pathology, Radiology and Imaging. After all, in your journey of good health, <span class="bold-font text-brandcolor">accurate diagnosis is half the battle won.</span>
+            </p>
+            				<a class="pull-right text-brandcolor">Know More</a>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                    	<div class="col-md-2 text-center">
+                        	<img src="./assets/images/iconimages/set2/1.png" width="100%"/>
+                            <h4 class="text-brandcolor">PATHOLOGY</h4>
+                        </div>
+                        <div class="col-md-2 text-center">
+                        	<img src="./assets/images/iconimages/set2/2.png" width="100%"/>
+                            <h4 class="text-brandcolor">XRAY</h4>
+                        </div>
+                        <div class="col-md-2 text-center">
+                        	<img src="./assets/images/iconimages/set2/3.png" width="100%"/>
+                            <h4 class="text-brandcolor">ULTRA <br>SOUND</h4>
+                        </div>
+                        <div class="col-md-2 text-center">
+                        	<img src="./assets/images/iconimages/set2/4.png" width="100%"/>
+                            <h4 class="text-brandcolor">MRI-3TESLA</h4>
+                        </div>
+						<div class="col-md-2 text-center">
+                        	<img src="./assets/images/iconimages/set2/5.png" width="100%"/>
+                            <h4 class="text-brandcolor">TMT</h4>
+                        </div>
+						<div class="col-md-2 text-center">
+                        	<img src="./assets/images/iconimages/set2/6.png" width="100%"/>
+                            <h4 class="text-brandcolor">PULMONARY <br> FUNCTION TEST</h4>
+                        </div>
+						
+                    </div>
+                  </div>
+                  <div id="menu1" class="tab-pane ">
+                        <h3>Menu 1</h3>
+                        <p>Some content in menu 1.</p>
+                  </div>
+                  <div id="menu2" class="tab-pane ">
+                    <h3>Menu 2</h3>
+                    <p>Some content in menu 2.</p>
+                  </div>
+                </div>
+
+
+            </div>
+        </div>
+        	
+        <hr>
+        <!--section2 -->
+        <div class="row" style="padding:30px 0;">
+          <div class="col-md-6 text-center ">
+              <button class="btn btn-brand btn-lg home_btn" style="margin-top:20px;" (click)="getBookAnAppointment()">LOOKING FOR AN <br>
+APPOINTMENT?</button>
+            </div>
+            <div class="col-md-6 text-center left-border-brandcolor-light-2px">
+              <h4 class="h4-titles">CHECK YOUR REPORT</h4>
+                <div class="form-group" style="margin: 40px 70px;">
+                  <div class="input-group search_input-group">
+                      <input type="text" class="form-control" placeholder="Enter Test Number" aria-describedby="basic-addon2">
+                      <span class="input-group-addon" id="basic-addon2" style="background-color:#fff; border:0px;"> 
+                          <span><i class="far fa-circle" style="color:#f05b25; font-size: 25px;margin-top: -7px;"></i></span>
+                            <div style="font-size: 12px;margin-top: -18px; color:#f05b25"><i class="fas fa-search"></i></div>
+                              
+                      </span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--section2 -->
+        <hr>
+        <!-- packages_sections-->
+        <div class="row" style="padding:20px 0;">
+          <div class="col-md-12">
+              <h2 class="titles" style="margin-bottom:30px;"><img src="./assets/images/iconimages/teneticon.png" class="pull-left" height="35" style="margin:0px 10px 10px 0px; " />OUR PACKAGES</h2>
+            </div>
+          <div class="col-md-12">
+              <ul class="nav nav-tabs brand_nav_tabs">
+                  <li class="active"><a data-toggle="tab" href="#home">FEATURED</a></li>
+                  <li><a data-toggle="tab" href="#menu1">SPECIAL OFFERS</a></li>
+                  <li><a data-toggle="tab" href="#menu2">CORPORATE PACKAGES</a></li>
+                  <li><a data-toggle="tab" href="#menu2">ALL PACKAGES</a></li>
+                </ul>
+                
+                <div class="tab-content">
+                  <div id="home" class="tab-pane in active">
+                    <div class="row">
+                      <div class="col-md-12 package_slider_wrapper" style="position:relative; padding:50px">
+                          <div class="package_slider">
+
+                            <owl-carousel #packcaro  [options]="{items: 3, dots: true, navigation: false,loop:true,autoplay:false}"   [carouselClasses]="['owl-theme', 'row', 'sliding']">
+                                <div class="package_container">
+                                    <div class="package_icon">
+                                        <div class="circle">
+                                            <h5>PACK <br> A</h5>
+                                        </div>
+                                    </div>
+                                    <div class="package_info">
+                                        <ul>
+                                            <li>Lorum Ipsum</li>
+                                            <li>Lorum Ipsum Lorum</li>
+                                            <li>Lorum Ipsum Lorum Lorum</li>
+                                        </ul>
+                                        <a class="pull-right text-brandcolor">Know More</a>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="package_price">
+                                        <h4><i class="fas fa-rupee-sign"></i> 9999</h4>
+                                    </div>
+                                    <div class="package_cart">
+                                        <h3><img src="./assets/images/iconimages/carticon.png"/> BUY NOW</h3>
+                                    </div>
+                                </div>
+                                 <div class="package_container">
+                                    <div class="package_icon">
+                                        <div class="circle">
+                                            <h5>PACK <br> B</h5>
+                                        </div>
+                                    </div>
+                                    <div class="package_info">
+                                        <ul>
+                                            <li>Lorum Ipsum</li>
+                                            <li>Lorum Ipsum Lorum</li>
+                                            <li>Lorum Ipsum Lorum Lorum</li>
+                                        </ul>
+                                        <a class="pull-right text-brandcolor">Know More</a>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="package_price">
+                                        <h4><i class="fas fa-rupee-sign"></i> 14999</h4>
+                                    </div>
+                                    <div class="package_cart">
+                                        <h3><img src="./assets/images/iconimages/carticon.png"/> BUY NOW</h3>
+                                    </div>
+                                </div>
+                                 <div class="package_container">
+                                    <div class="package_icon">
+                                        <div class="circle">
+                                            <h5>PACK <br> C</h5>
+                                        </div>
+                                    </div>
+                                    <div class="package_info">
+                                        <ul>
+                                            <li>Lorum Ipsum</li>
+                                            <li>Lorum Ipsum Lorum</li>
+                                            <li>Lorum Ipsum Lorum Lorum</li>
+                                        </ul>
+                                        <a class="pull-right text-brandcolor">Know More</a>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="package_price">
+                                        <h4><i class="fas fa-rupee-sign"></i> 19999</h4>
+                                    </div>
+                                    <div class="package_cart">
+                                        <h3><img src="./assets/images/iconimages/carticon.png"/> BUY NOW</h3>
+                                    </div>
+                                </div>
+                                 <div class="package_container">
+                                    <div class="package_icon">
+                                        <div class="circle">
+                                            <h5>PACK <br> A</h5>
+                                        </div>
+                                    </div>
+                                    <div class="package_info">
+                                        <ul>
+                                            <li>Lorum Ipsum</li>
+                                            <li>Lorum Ipsum Lorum</li>
+                                            <li>Lorum Ipsum Lorum Lorum</li>
+                                        </ul>
+                                        <a class="pull-right text-brandcolor">Know More</a>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="package_price">
+                                        <h4><i class="fas fa-rupee-sign"></i> 9999</h4>
+                                    </div>
+                                    <div class="package_cart">
+                                        <h3><img src="./assets/images/iconimages/carticon.png"/> BUY NOW</h3>
+                                    </div> 
+                                </div>
+                                 </owl-carousel>
+                            </div> 
+                          <div class="navigations_div" style="padding:0">
+                                <div class="prev pull-left">
+                                    <a href="javascript:void(0)" (click)="movescaro(packcaro,'left')"><img src="./assets/images/iconimages/leftarrow.png" /></a>
+                                </div>
+                                <div class="next pull-right">
+                                    <a href="javascript:void(0)" (click)="movescaro(packcaro,'right')"><img src="./assets/images/iconimages/rightarrow.png"/></a>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                  <div id="menu1" class="tab-pane ">
+                        <h3>Menu 1</h3>
+                        <p>Some content in menu 1.</p>
+                  </div>
+                  <div id="menu2" class="tab-pane ">
+                    <h3>Menu 2</h3>
+                    <p>Some content in menu 2.</p>
+                  </div>
+                </div>
+
+
+            </div>
+        </div>
+        <!-- packages_sections-->
+      
+        <hr>
+        <div class="row">
+        	 <div class="col-md-12 text-center">
+             	<h2 class="titles" style="font-size:25px"><img src="./assets/images/iconimages/teneticon.png" height="35" style="margin:0px 20px 10px 0px; " />Click here to locate your nearest Tenet Express</h2>
+             </div>
+        </div>
+        <hr>
+        <div class="row" style="padding:20px 0;">
+        	 <div class="col-md-12">
+            	<h2 class="titles" style="margin-bottom:30px;"><img src="./assets/images/iconimages/teneticon.png" class="pull-left" height="35" style="margin:0px 10px 10px 0px; " />TESTIMONIAL</h2>
+            </div>
+            <div class="col-md-12 testimonial_slider_wrapper">
+            	<div class="testimonals_slider" style="padding:0 170px;">
+                <owl-carousel #packcaro1 [options]="{items: 1, dots: true, navigation: false,loop:true,autoplay:true}"   [carouselClasses]="['owl-theme', 'row', 'sliding']">
+
+                	<div class="testimonial_containter">
+                    	<div class="pull-left" style="font-size: 50px;"><i class="fa fa-quote-left"></i></div>
+                        <div class="text">
+                       	 <p >Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged</p>
+                         <div class="user_details">
+                         	<div class="img_holder">
+                            	<img src="./assets/images/iconimages/profileimage.png"/>
+                                
+                            </div>
+                            <div class="info">
+                            	<h5>Minim Veniam</h5>
+              					<p>Hyderabad</p>
+                             </div>
+                             <div class="clearfix"></div>
+                         </div>
+                        </div>
+                        <div class="pull-right" style="font-size: 50px; margin-top:2%"><i class="fa fa-quote-right"></i></div>
+                    </div>
+                    <div class="testimonial_containter">
+                      <div class="pull-left" style="font-size: 50px;"><i class="fa fa-quote-left"></i></div>
+                        <div class="text">
+                         <p >Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged</p>
+                         <div class="user_details">
+                          <div class="img_holder">
+                              <img src="./assets/images/iconimages/profileimage.png"/>
+                                
+                            </div>
+                            <div class="info">
+                              <h5>Minim Veniam</h5>
+                        <p>Hyderabad</p>
+                             </div>
+                             <div class="clearfix"></div>
+                         </div>
+                        </div>
+                        <div class="pull-right" style="font-size: 50px; margin-top:2%"><i class="fa fa-quote-right"></i></div>
+                    </div>
+
+                    <div class="testimonial_containter">
+                      <div class="pull-left" style="font-size: 50px;"><i class="fa fa-quote-left"></i></div>
+                        <div class="text">
+                         <p >Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged</p>
+                         <div class="user_details">
+                          <div class="img_holder">
+                              <img src="./assets/images/iconimages/profileimage.png"/>
+                                
+                            </div>
+                            <div class="info">
+                              <h5>Minim Veniam</h5>
+                        <p>Hyderabad</p>
+                             </div>
+                             <div class="clearfix"></div>
+                         </div>
+                        </div>
+                        <div class="pull-right" style="font-size: 50px; margin-top:2%"><i class="fa fa-quote-right"></i></div>
+                    </div>
+                    <div class="testimonial_containter">
+                      <div class="pull-left" style="font-size: 50px;"><i class="fa fa-quote-left"></i></div>
+                        <div class="text">
+                         <p >Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged</p>
+                         <div class="user_details">
+                          <div class="img_holder">
+                              <img src="./assets/images/iconimages/profileimage.png"/>
+                                
+                            </div>
+                            <div class="info">
+                              <h5>Minim Veniam</h5>
+                        <p>Hyderabad</p>
+                             </div>
+                             <div class="clearfix"></div>
+                         </div>
+                        </div>
+                        <div class="pull-right" style="font-size: 50px; margin-top:2%"><i class="fa fa-quote-right"></i></div>
+                    </div>
+                </owl-carousel>
+
+                 
+                </div>
+                <div class="navigations_div" style="padding:0">
+                                <div class="prev pull-left">
+                                    <a href="javascript:void(0)" (click)="movescaro(packcaro1,'left')"><img src="./assets/images/iconimages/leftarrow.png" /></a>
+                                </div>
+                                <div class="next pull-right">
+                                   <a href="javascript:void(0)" (click)="movescaro(packcaro1,'right')">
+                                    <img src="./assets/images/iconimages/rightarrow.png"/></a>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+            </div>
+        </div>
+         
+     </div>
+</div>

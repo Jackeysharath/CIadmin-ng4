@@ -1,0 +1,11 @@
+/* .left:after {
+    content: "";
+    background-color: #000;
+    position: absolute;
+    width: 2px;
+    height: 100px;
+    top: 10px;
+    left: 50%;
+    display: block;
+    position: absolute;
+  } */

@@ -2,13 +2,91 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Cemdemo</title>
+  <title>Cemsdemo</title>
   <base href="/">
+  <!-- <link rel="stylesheet" href="https://bootswatch.com/darkly/bootstrap.css" media="screen"> -->
+
+
+  <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.min.css"> -->
+  
+
+   <link rel="stylesheet" href="./assets/css/sweetalert2.min.css">
+   <script src="./assets/js/sweetalert2.min.js"></script>
+   
+  <link rel="stylesheet" type="text/css" href="./assets/plugins/owl.carousel2/assets/owl.theme.default.css">
+  <link rel="stylesheet" type="text/css" href="./assets/plugins/owl.carousel2/assets/owl.carousel.css">
+  <link rel="stylesheet" type="text/css" href="./assets/css/styles.css">
+  
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!-- <script src="https://wchat.freshchat.com/js/widget.js"></script> -->
+  <script type="text/css">
+   
+    
+    </script>
 </head>
 <body>
-  <app-root></app-root>
+  <app-root>
+    <style>
+    app-root {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+  
+      color: pink;
+      text-transform: uppercase;
+      font-family: -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          Oxygen-Sans,
+          Ubuntu,
+          Cantarell,
+          Helvetica,
+          sans-serif;
+      font-size: 2.5em;
+      text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+    }
+    body {
+      background:#f05b25;
+      margin: 0;
+      padding: 0;
+    }
+  
+    @keyframes dots {
+      50% {
+        transform: translateY(-.4rem);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+  
+    .d {
+      animation: dots 1.5s ease-out infinite;
+    }
+    .d-2 {
+      animation-delay: .5s;
+    }
+    .d-3 {
+      animation-delay: 1s;
+    }
+    </style>
+  
+  <span class="d">L</span><span class="d d-2">o</span><span class="d d-3">a</span><span class="d">d</span><span class="d d-2">i</span><span class="d d-3">n</span>g<span class="d">.</span><span class="d d-2">.</span><span class="d d-3">.</span>
+  </app-root>
+  
+  <!-- <script type="text/javascript" src="./assets/js/jquery-3.2.1.min.js"></script>
+  <script src="./assets/plugins/owl.carousel2/owl.carousel.min.js"></script> -->
+  <!-- <script>
+    window.fcWidget.init({
+      token: "62802b6d-de67-4d37-945f-1d1b02bbe9cb",
+      host: "https://wchat.freshchat.com"
+    });
+  </script> -->
 </body>
 </html>

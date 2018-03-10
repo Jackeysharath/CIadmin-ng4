@@ -1,0 +1,378 @@
+<!-- <ul class="breadcrumb">
+    <li class="active">Home</li>
+</ul> -->
+<!-- <input #searchString placeholder="Search by test name,code,place..e.t.c" tabindex="1" type="text" name="inputboxform" class="blur" id="cs:searchAskInput" maxlength="256" style="height: 32px;width:60%;border-radius: 4px;">
+<button  class="btn" (click)="searchBasedOnString(searchString.value)">Search</button>
+<hr>
+<div class="maincen">
+    <img src={{image_path}} />
+    <div id="body">
+      <button  class="btn" (click)="getBookAnAppointment()">Book An Appointment</button>
+    </div>
+</div> -->
+<div class="content" style="min-height:800px;">
+        <div *ngIf="addW" class="modal-dialog" role="document">
+               
+                <div class="modal-content">
+                        <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" (click)="showHover(false)">&times;</button>
+                                <!-- <h4 class="modal-title">Modal Header</h4> -->
+                              </div>
+                              <div class="modal-body">
+                                    <video  controls autoplay width="568px" height="366px">
+                                            <source  src="./assets/videos/videoplayback.mp4" type="video/mp4">
+                                            </video>
+                              </div>
+                        
+                </div>
+              </div>
+	<div class="container">
+    	<div class="row">
+        	<div class="col-md-12">
+            	<h2 class="text-center" style="padding-bottom:20px;color: #f05b25;">Watch what makes Tenet work <a (click)="showHover(true)" class="playbutton"><img src="./assets/images/iconimages/playbutton.png" height="75" style="margin-left:10px;"/></a></h2>
+            </div>
+        </div>
+    </div>
+	 <div class="container-fluid" style="padding:0">
+    	<div class="row">
+        	<div class="col-md-12" style="position:relative">
+                    <owl-carousel #maincaro   [options]="{items: 1, dots: true, navigation: true ,loop:true,autoplay:true,autoplayTimeout:2000}" [items]="images"   [carouselClasses]="['owl-theme', 'row', 'sliding','slider_images']">
+                            <div class="item" *ngFor="let image of images;let i = index">
+                                <div class="thumbnail-image" >
+                                  <img src="./assets/images/{{image}}"/>
+                                </div>
+                                
+                            </div>
+                            
+                        </owl-carousel>
+                        <div class="navigations_div" style="">
+                                <div class="prev pull-left">
+                                        <a href="javascript:void(0)" (click)="movescaro(maincaro,'left')"><img src="./assets/images/iconimages/leftarrow.png" /></a>
+                                </div>
+                                <div class="next pull-right">
+                                        <a href="javascript:void(0)" (click)="movescaro(maincaro,'right')"><img src="./assets/images/iconimages/rightarrow.png"/></a>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+            </div>
+        </div>
+    </div>  
+	<div class="col-md-12" style="position:relative;padding:0">
+    </div>
+        
+    <div class="container">
+      <!-- search content start here -->
+      <div class="row" style="margin-top:30px; margin-bottom:35px;">
+        	<div class="col-md-12 text-center">
+            	<div class="form-group" style="margin: 40px 100px;">
+                	<div class="input-group search_input-group">
+                      <input #searchString placeholder="Search by test name,code,place..e.t.c" tabindex="1" type="text" name="inputboxform" id="cs:searchAskInput" maxlength="256" class="form-control input-lg" placeholder="Search for your nearest tenet center, test or service." aria-describedby="basic-addon2" [(ngModel)]="queryString"> {{queryString}}
+
+                      <span class="input-group-addon" id="basic-addon2" style="background-color:#fff; border:0px;" (click)="searchBasedOnString(searchString.value)"> 
+                      		<span><i class="far fa-circle" style="color:#f05b25; font-size: 30px;margin-top: -7px;"></i></span>
+                            <div style="font-size: 14px;margin-top: -22px; color:#f05b25"><i class="fa fa-search"></i></div>
+                              
+                         </span>
+                    </div>
+
+                </div>
+            </div>	
+        </div>
+      <!-- search content end here -->
+    	
+        <hr>
+        <!-- section start here -->
+        <div class="row" style="padding:30px 0;">
+        	<div class="col-md-6 text-center ">
+            	<button class="btn btn-brand btn-lg home_btn" (click)="getBookAnAppointment()" style="margin-top:20px;">LOOKING FOR AN <br>
+APPOINTMENT?</button>
+            </div>
+            <div class="col-md-6 text-center left-border-brandcolor-light-2px">
+            	<h4 class="h4-titles">CHECK YOUR REPORT</h4>
+                <div class="form-group" style="margin: 40px 70px;">
+                	<div class="input-group search_input-group">
+                      <input type="text" class="form-control" placeholder="Enter Test Number" aria-describedby="basic-addon2">
+                      <span class="input-group-addon" id="basic-addon2" style="background-color:#fff; border:0px;"> 
+                      		<span><i class="far fa-circle" style="color:#f05b25; font-size: 25px;margin-top: -7px;"></i></span>
+                            <div style="font-size: 12px;margin-top: -18px; color:#f05b25"><i class="fa fa-search"></i></div>
+                              
+                   	  </span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- section end here -->
+        <hr>
+        <div class="row" style="padding:20px 0px;">
+        	<div class="col-md-6">
+            	<h2 class="titles"><img src="./assets/images/iconimages/teneticon.png" class="pull-left" height="35" style="margin:0px 10px 10px 0px; " />YOUR HEALTH IS <br>YOUR RESPONSIBILITY</h2>
+            </div>
+            <div class="col-md-6">
+            	<p>Tenet diagnostics brings to you a comprehensive range of all diagnostic modalities under one name. With a combination of Quality, Accuracy, Technology and Convenience, we aim to provide you with results that matter to prevent impending ailments to your body that stem from our lifestyles today.
+                </p>
+                <p>Being responsible about health allows you to take preventive measures and make sound health a priority. </p>
+                <p>Afterall, when it is about your health, <span class="bold-font text-brandcolor">It’s good to know.</span> 
+                </p>
+            </div>
+        </div>
+        <hr>
+        <div class="row" style="padding:20px 0px;">
+        	<div class="col-md-7">
+            	<h2 class="titles" style="margin-bottom:15px;"><img src="./assets/images/iconimages/teneticon.png" class="pull-left" height="35" style="margin:0px 10px 10px 0px; " />OUR FACILITIES</h2>
+                <div class="row" style="margin-left:35px">
+                	<div class="col-xs-6">
+                    	<p class="sub_heading">RADIOLOGY</p>
+                        <ul class="list-ul-default">
+                        	<li>High Resolution 3D Ultrasound tesing image 3 tesla</li>
+                            <li>X-Ray</li>
+                            <li>High Resolution 3D Ultrasound</li>
+                        </ul>
+                        <p class="sub_heading">RADIOLOGY</p>
+                        <ul class="list-ul-default">
+                        	<li>High Resolution 3D Ultrasound</li>
+                            <li>X-Ray</li>
+                            <li>High Resolution 3D Ultrasound</li>
+                        </ul>
+                    </div>
+                   <div class="col-xs-6">
+                    	<p class="sub_heading">RADIOLOGY</p>
+                        <ul class="list-ul-default">
+                        	<li>High Resolution 3D Ultrasound</li>
+                            <li>X-Ray</li>
+                            <li>High Resolution 3D Ultrasound</li>
+                        </ul>
+                        <p class="sub_heading">RADIOLOGY</p>
+                        <ul class="list-ul-default">
+                        	<li>High Resolution 3D Ultrasound</li>
+                            <li>X-Ray</li>
+                            <li>High Resolution 3D Ultrasound</li>
+                        </ul>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="col-md-5 presentaion_wrapper" style="position:relative">
+                <owl-carousel #smallcaro   [options]="{items: 1, dots: true, navigation: false,loop:true,autoplay:true,autoplayTimeout:2000}" [items]="images1"   [carouselClasses]="['owl-theme', 'row', 'sliding']">
+                 <div class="item" *ngFor="let img of images1;let i = index">
+                     <div class="thumbnail-image">
+                         <img src="./assets/images/{{img}}"/>
+                     </div>
+                 </div>
+               </owl-carousel>
+          
+                <div class="navigations_div">
+                	<div class="prev pull-left">
+                    	<a href="javascript:void(0)" (click)="movescaro(smallcaro,'left')"><img src="./assets/images/iconimages/leftarrow.png"  /></a>
+                    </div>
+                    <div class="next pull-right">
+                        <a href="javascript:void(0)" (click)="movescaro(smallcaro,'right')"><img src="./assets/images/iconimages/rightarrow.png"/></a>
+                        
+                    </div>
+                    <div class="clearfix"></div>
+                </div> 
+            </div>
+            
+        </div>
+        <hr>
+        <div class="row" style="padding:20px 0px;">
+        	<div class="col-md-5">
+            	<h2 class="titles"><img src="./assets/images/iconimages/teneticon.png" class="pull-left" height="35" style="margin:0px 10px 10px 0px; " />OUR NETWORK</h2>
+            </div>
+            <div class="col-md-7">
+            	<p style="margin-top:18px;">Keeping your diagnostic needs in mind, Tenet has planned a range of facilities and services to make the procedure of reporting and diagnostics as convenient as possible so that you can focus on your health, with a direction from our accurate reporting. 
+</p>
+
+            </div>
+            <div class="col-md-12">
+            	<div class="row">
+                	<div class="col-md-3">
+                    	<div class="image_holder">
+                        	<img src="./assets/images/iconimages/networkimages/1.png" width="100%"/>
+                        </div>
+                        <div class="info text-center">
+                        	<h4 class="text-center text-brandcolor">TENET<br>HUB</h4>
+                            <p style="color:#1a1a1a">maging, Radiology & Pathology</p>
+                            <div class="line_separater" style=""></div>
+                            <p>Houses Pathology, Radiology and Imaging - A 360 degree diagnosis.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                    	<div class="image_holder">
+                        	<img src="./assets/images/iconimages/networkimages/2.png" width="100%"/>
+                        </div>
+                        <div class="info text-center">
+                        	<h4 class="text-center text-brandcolor">TENET<br>HUB</h4>
+                            <p style="color:#1a1a1a">maging, Radiology & Pathology</p>
+                            <div class="line_separater" style=""></div>
+                            <p>Houses Pathology, Radiology and Imaging - A 360 degree diagnosis.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                    	<div class="image_holder">
+                        	<img src="./assets/images/iconimages/networkimages/3.png" width="100%"/>
+                        </div>
+                        <div class="info text-center">
+                        	<h4 class="text-center text-brandcolor">TENET<br>HUB</h4>
+                            <p style="color:#1a1a1a">maging, Radiology & Pathology</p>
+                            <div class="line_separater" style=""></div>
+                            <p>Houses Pathology, Radiology and Imaging - A 360 degree diagnosis.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                    	<div class="image_holder">
+                        	<img src="./assets/images/iconimages/networkimages/4.png" width="100%"/>
+                        </div>
+                        <div class="info text-center">
+                        	<h4 class="text-center text-brandcolor">TENET<br>HUB</h4>
+                            <p style="color:#1a1a1a">maging, Radiology & Pathology</p>
+                            <div class="line_separater" style=""></div>
+                            <p>Houses Pathology, Radiology and Imaging - A 360 degree diagnosis.</p>
+                        </div>
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+        <hr>
+        <!-- package start here -->
+        <div class="row" style="padding:20px 0;">
+        	<div class="col-md-12">
+            	<h2 class="titles" style="margin-bottom:30px;"><img src="./assets/images/iconimages/teneticon.png" class="pull-left" height="35" style="margin:0px 10px 10px 0px; " />OUR PACKAGES</h2>
+            </div>
+        	<div class="col-md-12">
+            	<ul class="nav nav-tabs brand_nav_tabs">
+                  <li class="active"><a data-toggle="tab" href="#home">FEATURED</a></li>
+                  <li><a data-toggle="tab" href="#menu1">SPECIAL OFFERS</a></li>
+                  <!-- <li><a data-toggle="tab" href="#menu2">CORPORATE PACKAGES</a></li> -->
+                  <li><a data-toggle="tab" href="#menu2">ALL PACKAGES</a></li>
+                </ul>
+                
+                <div class="tab-content">
+                  <div id="home" class="tab-pane in active">
+                   	<div class="row">
+                    	<div class="col-md-12 package_slider_wrapper" style="position:relative; padding:50px">
+                        	<div class="package_slider">
+                              <owl-carousel #packcaro  [options]="{items: 3, dots: true, navigation: false,loop:true,autoplay:false}"   [carouselClasses]="['owl-theme', 'row', 'sliding']">
+                                <div class="package_container">
+                                    <div class="package_icon">
+                                        <div class="circle">
+                                            <h5>PACK <br> A</h5>
+                                        </div>
+                                    </div>
+                                    <div class="package_info">
+                                        <ul>
+                                            <li>Lorum Ipsum</li>
+                                            <li>Lorum Ipsum Lorum</li>
+                                            <li>Lorum Ipsum Lorum Lorum</li>
+                                        </ul>
+                                        <a class="pull-right text-brandcolor">Know More</a>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="package_price">
+                                        <h4><i class="fa fa-rupee-sign"></i> 9999</h4>
+                                    </div>
+                                    <div class="package_cart">
+                                        <h3><img src="./assets/images/iconimages/carticon.png"/> BUY NOW</h3>
+                                    </div>
+                                </div>
+
+                                 <div class="package_container">
+                                    <div class="package_icon">
+                                        <div class="circle">
+                                            <h5>PACK <br> B</h5>
+                                        </div>
+                                    </div>
+                                    <div class="package_info">
+                                        <ul>
+                                            <li>Lorum Ipsum</li>
+                                            <li>Lorum Ipsum Lorum</li>
+                                            <li>Lorum Ipsum Lorum Lorum</li>
+                                        </ul>
+                                        <a class="pull-right text-brandcolor">Know More</a>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="package_price">
+                                        <h4><i class="fa fa-rupee-sign"></i> 14999</h4>
+                                    </div>
+                                    <div class="package_cart">
+                                        <h3><img src="./assets/images/iconimages/carticon.png"/> BUY NOW</h3>
+                                    </div>
+                                </div>
+                                 <div class="package_container">
+                                    <div class="package_icon">
+                                        <div class="circle">
+                                            <h5>PACK <br> C</h5>
+                                        </div>
+                                    </div>
+                                    <div class="package_info">
+                                        <ul>
+                                            <li>Lorum Ipsum</li>
+                                            <li>Lorum Ipsum Lorum</li>
+                                            <li>Lorum Ipsum Lorum Lorum</li>
+                                        </ul>
+                                        <a class="pull-right text-brandcolor">Know More</a>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="package_price">
+                                        <h4><i class="fa fa-rupee-sign"></i> 19999</h4>
+                                    </div>
+                                    <div class="package_cart">
+                                        <h3><img src="./assets/images/iconimages/carticon.png"/> BUY NOW</h3>
+                                    </div>
+                                </div>
+                                 <div class="package_container">
+                                    <div class="package_icon">
+                                        <div class="circle">
+                                            <h5>PACK <br> D</h5>
+                                        </div>
+                                    </div>
+                                    <div class="package_info">
+                                        <ul>
+                                            <li>Lorum Ipsum</li>
+                                            <li>Lorum Ipsum Lorum</li>
+                                            <li>Lorum Ipsum Lorum Lorum</li>
+                                        </ul>
+                                        <a class="pull-right text-brandcolor">Know More</a>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="package_price">
+                                        <h4><i class="fa fa-rupee-sign"></i> 9999</h4>
+                                    </div>
+                                    <div class="package_cart">
+                                        <h3><img src="./assets/images/iconimages/carticon.png"/> BUY NOW</h3>
+                                    </div>
+                                </div>
+                                 
+                              </owl-carousel>
+                            </div> 
+                        	<div class="navigations_div">
+                                    <div class="prev pull-left">
+                                        <a href="javascript:void(0)" (click)="movescaro(packcaro,'left')"><img src="./assets/images/iconimages/leftarrow.png"  /></a>
+                                    </div>
+                                    <div class="next pull-right">
+                                        <a href="javascript:void(0)" (click)="movescaro(packcaro,'right')"><img src="./assets/images/iconimages/rightarrow.png"/></a>
+                                        
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                        </div>
+                    </div>
+                  </div>
+                  <div id="menu1" class="tab-pane ">
+                        <h3>Menu 1</h3>
+                        <p>Some content in menu 1.</p>
+                  </div>
+                  <div id="menu2" class="tab-pane ">
+                    <h3>Menu 2</h3>
+                    <p>Some content in menu 2.</p>
+                  </div>
+                </div>
+
+
+            </div>
+        </div>
+        <!-- package end here -->
+        
+     </div>
+</div>

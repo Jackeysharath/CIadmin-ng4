@@ -1,0 +1,62 @@
+table.top{
+    width: 100%;
+    text-align: center;
+}
+td.top,th.top{
+    text-align: center;
+}
+.leftCol {
+    position: absolute;
+    /* overflow: auto; */
+    right: 80%;
+    left: 0;
+    top: auto;
+    /* bottom: 30px; */
+    /* background: #aabbcc; */
+}
+
+    .leftCol .leftTop {
+        /* background: #ff6a00; */
+        height: auto;
+    }
+
+    .leftCol .leftBottom {
+        background: #b6ff00;
+    }
+
+.rightCol {
+    position: absolute;
+    /* overflow: auto; */
+    left: 80%;
+    right: 0;
+    /* top: auto; */
+    /* bottom: 30px; */
+    /* width: 70%; */
+    height: 100%;
+}
+.midCol{
+    position: absolute;
+    /* overflow: auto; */
+    left: 20%;
+    right: 20%;
+    /* top: auto; */
+    /* bottom: 30px; */
+    /* width: 70%; */
+    height: 100%;
+}
+.midbottom{
+    position: absolute;
+    /* overflow: auto; */
+    left: 20%;
+    right: 20%;
+    top: 70%;
+    /* bottom: 0%; */
+    /* width: 70%; */
+    height: 100%;
+}
+.sug{
+    font-size: 20px;
+}
+.wmsg{
+    color: red; 
+}

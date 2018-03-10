@@ -1,0 +1,175 @@
+<div class="content" style="min-height:800px;">
+  
+    <div class="container">
+      <div class="row" style="">
+           <div class="col-md-12">
+                <h1 class="bigtitle">CART ITEMS</h1>
+            </div>
+            <div *ngIf="modify_bill" ><p class="wmsg">You Are Adding To Existing Bill : <b>{{modify_bill}}</b></p><input type="radio" name="modify" value="1" checked="true"/>Yes,<input type="radio" name="modify" value="2" (click)="noModify()"/>No,I Want To Make A New Bill</div>
+        </div>
+    <div class="row">
+      <div table="col-md-12">
+       <table class="table" *ngIf="(tests?.length > 0)||(pckgs?.length > 0)">
+        <tr>
+        <th *ngIf="isTokenSet">CUSTOMER NAME</th>
+        <th>TEST NAME</th>
+        <th>TYPE</th>
+        <th *ngIf="isTokenSet">LOCATION</th>
+        <th *ngIf="isTokenSet">SCHEDULE</th>
+        <th>MRP</th>
+        <th>DISCOUNT</th>
+        <th>QUANTITY</th>
+        <th>ADDITIONAL FEE</th>
+        <th>FINAL PRICE</th>
+        <th *ngIf="isTokenSet">ACTIONS</th>
+       </tr>
+       <tr *ngFor="let item of tests">
+        <td *ngIf="isTokenSet">
+          <div *ngIf="modify_bill">
+            <p>{{modi_member.user_name}}</p>
+          </div>
+          <select *ngIf="modify_bill==null" class="form-control theme input-sm" (change)="setFamilyMember1($event.target.value, item.tid)">
+              <!-- <option value="{{sel_members[item.tid]?.uid}}">{{sel_members[item.tid]?.user_name}}</option>  -->
+              <option *ngFor="let mem of getSelMem(item.tid)" value="{{mem.uid}}" selected="true">{{mem.user_name}}</option>
+              <option *ngFor="let mem of getNonSelMem(item.tid)" value="{{mem.uid}}" >{{mem.user_name}}</option>
+          </select>
+          <!-- <a href="javascript:void(0)" (click)="getUserFamily(user.uid,item.tid)" ><i data-toggle="modal" data-target="#myModal" class="fa fa-pencil" aria-hidden="true"></i></a> -->
+        </td>
+        <td>{{item.test_name}}</td>
+        <td><select class="form-control theme input-sm wihc_{{item.tid}}" (change)="getLabAddress($event.target,item.tid)">
+          <option [value]="1" [selected]="1==sel_type[item.tid]">Home Collection</option>
+          <option [value]="2"  [selected]="2==sel_type[item.tid]">Walk-in</option>
+     
+        </select></td>
+        
+        <td *ngIf="isTokenSet">
+          <select *ngIf="locationhcset(item.tid)" class="form-control theme input-sm  selloc_{{item.tid}}" (click)="setTestLocation1($event.target.value, item.tid)">
+            <!-- <option>{{sel_locations[item.tid]}}</option> -->
+            <option *ngFor="let loc of getSelLoc(item.tid)" value="{{loc.area_id}}" selected="true">{{loc.address}},{{loc.area}},{{loc.city}}</option>
+            <option *ngFor="let loc of getNonSelLoc(item.tid)" value="{{loc.area_id}}" >{{loc.address}},{{loc.area}},{{loc.city}}</option>
+          </select>
+          <select *ngIf="locationwiset(item.tid)" class="form-control theme input-sm  sellabloc_{{item.tid}}" (click)="setTestLocation1($event.target.value, item.tid)">
+            <!-- <option>Select your nearest location below</option> -->
+            <!-- <option *ngFor="let loc of lablocations" value={{loc.area_id}}>{{loc.address}},{{loc.area}},{{loc.city}}</option> -->
+            <option *ngFor="let loc of getSelLabLoc(item.tid)" value="{{loc.area_id}}" selected="true">{{loc.location_name}},{{loc.address}},{{loc.area}},{{loc.city}}</option>
+            <option *ngFor="let loc of getNonSelLabLoc(item.tid)" value="{{loc.area_id}}" >{{loc.location_name}},{{loc.address}},{{loc.area}},{{loc.city}}</option>
+          </select>
+          <!-- <a href="javascript:void(0)" (click)="getUserLocation(user.uid,item.tid)"><i class="fa fa-pencil" aria-hidden="true"></i></a> --></td>
+
+        <td *ngIf="isTokenSet"><span *ngIf="sel_slot?.length > 0"><span *ngFor="let slo of sel_slot"><span *ngIf="slo[0].tid==item.tid">{{slo[0].temp[0].slot_date.slice(6,8)}}-{{slo[0].temp[0].slot_date.slice(4,6)}}-{{slo[0].temp[0].slot_date.slice(0,4)}} {{slo[0].temp[0].slot_time}}</span></span></span><a href="javascript:void(0)" (click)="getSlots(user.uid,item.tid)"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+        <td>{{item.test_price}}</td>
+        <td>{{item.test_discpr}}</td>
+        <td>{{item.quant}}</td>
+        <td>0</td>
+        <td>{{item.test_finalpr}}</td>
+        <td *ngIf="isTokenSet"><a href="javascript:void(0)" (click)="deleteCartItem(user.uid,item.tid)"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+      </tr>
+
+      <tr *ngFor="let pckg of pckgs">
+        <td *ngIf="isTokenSet">
+            <select class="form-control theme input-sm" (change)="setFamilyMember1($event.target.value, pckg.id)">
+                <!-- <option value="{{sel_members[pckg.tid]?.uid}}">{{sel_members[item.tid]?.user_name}}</option>  -->
+                <option *ngFor="let mem of getSelMem(pckg.id)" value="{{mem.uid}}" selected="true">{{mem.user_name}}</option>
+                <option *ngFor="let mem of getNonSelMem(pckg.id)" value="{{mem.uid}}" >{{mem.user_name}}</option>
+            </select>
+        </td>
+
+        <td>{{pckg.package_name}}</td>
+        <td><select class="form-control theme input-sm">
+          <option>Home Collection</option>
+          <option>Walk-in</option>
+        </select></td>
+
+        <td *ngIf="isTokenSet">
+          <select class="form-control theme input-sm" (click)="setTestLocation1($event.target.value, pckg.id)">
+            <!-- <option>{{sel_locations[item.tid]}}</option> -->
+            <option *ngFor="let loc of getSelLoc(pckg.id)" value="{{loc.area_id}}" selected="true">{{loc.address}},{{loc.area}},{{loc.city}}</option>
+            <option *ngFor="let loc of getNonSelLoc(pckg.id)" value="{{loc.area_id}}" >{{loc.address}},{{loc.area}},{{loc.city}}</option>
+          </select>
+          <!-- <a href="javascript:void(0)" (click)="getUserLocation(user.uid,item.tid)"><i class="fa fa-pencil" aria-hidden="true"></i></a> --></td>
+        <td *ngIf="isTokenSet"><span *ngIf="sel_slot?.length > 0"><span *ngFor="let slo of sel_slot"><span *ngIf="slo[0].tid==pckg.id">{{slo[0].temp[0].slot_date.slice(6,8)}}-{{slo[0].temp[0].slot_date.slice(4,6)}}-{{slo[0].temp[0].slot_date.slice(0,4)}} {{slo[0].temp[0].slot_time}}</span></span></span><a href="javascript:void(0)" (click)="getSlots(user.uid,pckg.id)"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+
+      <td>{{pckg.package_price}}</td>
+      <td>{{pckg.package_discpr}}</td><td>0</td><td>{{pckg.package_finalpr}}</td>
+      <td *ngIf="isTokenSet"><a href="javascript:void(0)" (click)="deleteCartItem(user.uid,pckg.id)"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+
+
+
+     <!--  <td *ngIf="isTokenSet">{{sel_members[pckg.id]?.user_name}}<a href="javascript:void(0)" (click)="getUserFamily(user.uid,pckg.id)"><i data-toggle="modal" data-target="#myModal" class="fa fa-pencil" aria-hidden="true"></i></a></td>
+
+      <td *ngIf="isTokenSet">{{sel_locations[pckg.tid]}}<a href="javascript:void(0)" (click)="getUserLocation(user.uid,pckg.id)"><i class="fa fa-pencil" aria-hidden="true"></i></a></td> -->
+
+      <!-- <td *ngIf="isTokenSet"><span *ngIf="sel_slot?.length > 0"><span *ngFor="let slo of sel_slot"><span *ngIf="slo[0].tid==pckg.id">{{slo[0].temp[0].slot_date}} {{slo[0].temp[0].slot_time}}</span></span></span><a href="javascript:void(0)" (click)="getSlots(user.uid,pckg.id)"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+      <td>{{pckg.package_price}}</td>
+      <td>{{pckg.package_discpr}}</td><td>0</td><td>{{pckg.package_finalpr}}</td>
+      <td *ngIf="isTokenSet"><a href="javascript:void(0)" (click)="deleteCartItem(user.uid,pckg.id)"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td> -->
+    </tr>
+            <tr>
+              <td colspan="9" class="text-right">Phlebotomy Charges</td>
+                <th class="text-right">RS.{{cartValues.tot+cartValues.hvc+cartValues.colc}}</th>
+            </tr>
+            <tr>
+              <td colspan="9" class="text-right">Coupon Applied </td>
+                <th class="text-right">RS.{{couponRes.discount_amount}}</th>
+            </tr>
+            <tr>
+              <td colspan="9" class="text-right"><strong>Charge desc</strong></td>
+                <th class="text-right text-brandcolor"><strong>RS.{{cartValues.tot+cartValues.hvc+cartValues.colc-couponRes.discount_amount}}</strong>
+                </th>
+            </tr>
+      </table>
+
+      <table class="table" *ngIf="(tests?.length == 0) && (pckgs?.length == 0)">
+        <hr>
+         <tr><td class="sub_heading-brand ft-16px m-b-15">No Tests Added to the cart</td></tr>
+         <tr></tr>
+         <tr></tr>
+         <hr>
+      </table>
+      </div>
+    </div>
+<!-- Modal diologue-->
+    
+   
+    <!--modal--> 
+    <div class="form-group">
+        btn btn-brand   <input class="form" placeholder="COUPON CODE"/>
+       <button class="btn btn-brand" type="submit">APPLY</button>
+        </div>
+    <div class="form-group text-right">
+      <button class="btn btn-brand" (click)="checkOut()">CONFIRM BOOKING</button>
+    </div>
+    
+    <h3>CUSTOMER WHO BOUGHT ITEMS IN YOUR CART ALSO BOUGHT</h3>
+    <div class="row package_row">
+
+                  <div class="col-md-4" *ngFor="let test of suggestedTests">
+                      <div class="package package_container" style="padding:10px 20px;" >
+                          <p class="sub_heading-brand ft-16px m-b-15">{{test.test_name}}</p>
+                            <ul class="list-ul-default">
+                                            <li>Lorem ipsum</li>
+                                            <li>Consectetuer adipiscing</li>
+                                            <li>Sed diam nonummy</li>
+                             </ul>
+                             <a class="pull-right text-brandcolor" (click)="getTestDetails(test.tid)">Know More</a>
+                                        <div class="clearfix"></div>
+                                        
+                              <div class="package_price">
+                                        <h4><i class="fas fa-rupee-sign"></i> 190</h4>
+                                    </div>
+                                    <div class="package_cart">
+                                        <button class="btn btn-brand btn-sm" (click)="getAddTestCart(test)"><img src="./assets/images/iconimages/carticon.png"/> ADD TO CART</button>
+                                    </div>
+                                    
+                        </div>
+                    </div>
+
+    </div>
+          
+     </div>
+</div>
+
+
+
+
+
